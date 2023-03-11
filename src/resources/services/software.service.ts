@@ -3,12 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSoftwareDto, UpdateSoftwareDto } from '../dtos/software';
 import { Software } from '../entities/software.entity';
+import { ResourceService } from './resource.service';
 
 @Injectable()
 export class SoftwareService {
   constructor(
     @InjectRepository(Software)
-    private softwareRepository: Repository<Software>
+    private softwareRepository: Repository<Software>,
+    private resourceService: ResourceService
   ) {}
 
   findAll():Promise<Software[]> {
@@ -19,7 +21,11 @@ export class SoftwareService {
 
   async create(data: CreateSoftwareDto) {
     try {
-      return await this.softwareRepository.save(data);
+      const res = await this.softwareRepository.save(data);
+      if (res) {
+        await this.resourceService.create(undefined, res);
+        return res; 
+      }
     } catch(error) {
       throw new BadRequestException(error.detail);
     }

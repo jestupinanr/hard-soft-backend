@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../users/entities/user.entity");
 const typeorm_2 = require("typeorm");
+const bcrypt = require("bcrypt");
 let AuthService = class AuthService {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -34,12 +35,22 @@ let AuthService = class AuthService {
         const user = await this.usersRepository.findOne({
             where: {
                 email: payload.email,
-                password: payload.password
-            }
+            },
+            select: ['password']
         });
         if (!user)
             throw new common_1.BadRequestException(`User or password incorrect`);
-        return user;
+        const samePassword = bcrypt.compareSync(payload.password, user.password);
+        if (samePassword) {
+            return this.usersRepository.findOne({
+                where: {
+                    email: payload.email,
+                },
+            });
+        }
+        else {
+            throw new common_1.BadRequestException(`User or password incorrect`);
+        }
     }
 };
 AuthService = __decorate([

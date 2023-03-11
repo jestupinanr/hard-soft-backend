@@ -5,5 +5,5 @@ export declare class StatusResourcesService {
     private statusResourceRepository;
     constructor(statusResourceRepository: Repository<StatusResources>);
     findAll(): Promise<StatusResources[]>;
-    create(data: CreateStatusResourceDto): Promise<CreateStatusResourceDto & StatusResources>;
+    create(data: CreateStatusResourceDto): Promise<any>;
 }

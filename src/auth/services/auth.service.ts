@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 import { authUser } from '../entities/auth.entity';
 import { LoginDto } from '../dtos/auth.dto';
@@ -27,48 +28,24 @@ export class AuthService {
     const user = await this.usersRepository.findOne({
       where: {
         email: payload.email,
-        password: payload.password
-      }
+      },
+      select: ['password']
     })
+
     if (!user)
       throw new BadRequestException(`User or password incorrect`);
-    return user
+    
+    const samePassword = bcrypt.compareSync(payload.password, user.password);
+    
+    if(samePassword) {
+      return this.usersRepository.findOne({
+        where: {
+          email: payload.email,
+        },
+      })
+    } else {
+      throw new BadRequestException(`User or password incorrect`);
+    }
+    
   }
-
-  // findOne(id: number) {
-  //   const user = this.users.find((item) => item.id === id);
-  //   if (!user) {
-  //     throw new NotFoundException(`User #${id} not found`);
-  //   }
-  //   return user;
-  // }
-
-  // create(data: CreateUserDto) {
-  //   this.counterId = this.counterId + 1;
-  //   const newUser = {
-  //     id: this.counterId,
-  //     ...data,
-  //   };
-  //   this.users.push(newUser);
-  //   return newUser;
-  // }
-
-  // update(id: number, changes: UpdateUserDto) {
-  //   const user = this.findOne(id);
-  //   const index = this.users.findIndex((item) => item.id === id);
-  //   this.users[index] = {
-  //     ...user,
-  //     ...changes,
-  //   };
-  //   return this.users[index];
-  // }
-
-  // remove(id: number) {
-  //   const index = this.users.findIndex((item) => item.id === id);
-  //   if (index === -1) {
-  //     throw new NotFoundException(`User #${id} not found`);
-  //   }
-  //   this.users.splice(index, 1);
-  //   return true;
-  // }
 }

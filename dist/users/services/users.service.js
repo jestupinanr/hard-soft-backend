@@ -16,6 +16,7 @@ exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const bcrypt = require("bcrypt");
 const user_entity_1 = require("../entities/user.entity");
 let UsersService = class UsersService {
     constructor(usersRepository) {
@@ -32,7 +33,9 @@ let UsersService = class UsersService {
         });
         if (olderData)
             throw new common_1.BadRequestException('User already created');
-        return await this.usersRepository.save(data);
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(data.password, salt);
+        return await this.usersRepository.save(Object.assign(Object.assign({}, data), { password: hash }));
     }
 };
 UsersService = __decorate([

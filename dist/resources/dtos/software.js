@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateSoftwareDto = exports.CreateSoftwareDto = void 0;
 const class_validator_1 = require("class-validator");
 const mapped_types_1 = require("@nestjs/mapped-types");
-const statusResources_entity_1 = require("../../status-resources/entities/statusResources.entity");
+const status_resources_entity_1 = require("../entities/status-resources.entity");
 class CreateSoftwareDto {
 }
 __decorate([
@@ -25,7 +25,7 @@ __decorate([
     class_validator_1.IsUUID(),
     class_validator_1.Length(1, 50),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", statusResources_entity_1.StatusResources)
+    __metadata("design:type", status_resources_entity_1.StatusResources)
 ], CreateSoftwareDto.prototype, "status", void 0);
 __decorate([
     class_validator_1.IsString(),

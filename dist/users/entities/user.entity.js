@@ -32,7 +32,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 100, nullable: false }),
+    typeorm_1.Column({ type: 'varchar', length: 100, nullable: false, select: false }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:type", Date)
 ], User.prototype, "bornDate", void 0);
 __decorate([
-    typeorm_1.OneToOne(() => role_entity_1.Roles),
+    typeorm_1.ManyToOne(() => role_entity_1.Roles),
     typeorm_1.JoinColumn(),
     __metadata("design:type", role_entity_1.Roles)
 ], User.prototype, "role", void 0);

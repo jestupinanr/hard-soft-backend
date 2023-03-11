@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const hardware_entity_1 = require("../entities/hardware.entity");
+const resource_service_1 = require("./resource.service");
 let HardwareService = class HardwareService {
-    constructor(hardwareRepository) {
+    constructor(hardwareRepository, resourceService) {
         this.hardwareRepository = hardwareRepository;
+        this.resourceService = resourceService;
     }
     findAll() {
         return this.hardwareRepository.find({
@@ -28,7 +30,11 @@ let HardwareService = class HardwareService {
     }
     async create(data) {
         try {
-            return await this.hardwareRepository.save(data);
+            const res = await this.hardwareRepository.save(data);
+            if (res) {
+                await this.resourceService.create(res);
+                return res;
+            }
         }
         catch (error) {
             throw new common_1.BadRequestException(error.detail);
@@ -50,20 +56,27 @@ let HardwareService = class HardwareService {
         });
     }
     async remove(id) {
-        const hardware = await this.hardwareRepository.findOne({
-            where: {
-                id
-            }
-        });
-        if (!hardware)
-            throw new common_1.NotFoundException(`Hardware #${id} not found`);
-        return this.hardwareRepository.delete(id);
+        try {
+            const hardware = await this.hardwareRepository.findOne({
+                where: {
+                    id
+                }
+            });
+            if (!hardware)
+                throw new common_1.NotFoundException(`Hardware #${id} not found`);
+            const res = await this.hardwareRepository.delete(id);
+            return res;
+        }
+        catch (error) {
+            throw new common_1.BadRequestException(error.detail);
+        }
     }
 };
 HardwareService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(hardware_entity_1.Hardware)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        resource_service_1.ResourceService])
 ], HardwareService);
 exports.HardwareService = HardwareService;
 //# sourceMappingURL=hardware.service.js.map

@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, Length, IsDateString, IsUUID, } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
-import { StatusResources } from 'src/status-resources/entities/statusResources.entity';
+import { StatusResources } from '../entities/status-resources.entity';
 
 export class CreateHardwareDto {
 

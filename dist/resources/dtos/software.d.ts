@@ -1,4 +1,4 @@
-import { StatusResources } from 'src/status-resources/entities/statusResources.entity';
+import { StatusResources } from '../entities/status-resources.entity';
 export declare class CreateSoftwareDto {
     readonly name: string;
     readonly status: StatusResources;

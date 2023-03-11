@@ -1,0 +1,8 @@
+import { CreateAssigmentDto } from '../dtos/assigment';
+import { AssigmentService } from '../services/assigment.service';
+export declare class AssigmentController {
+    private assigmentService;
+    constructor(assigmentService: AssigmentService);
+    findAll(): Promise<import("../entities/assigment.entity").Assigment[]>;
+    create(payload: CreateAssigmentDto): Promise<CreateAssigmentDto & import("../entities/assigment.entity").Assigment>;
+}

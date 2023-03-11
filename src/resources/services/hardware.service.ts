@@ -2,14 +2,18 @@ import { BadRequestException, Body, Injectable, NotFoundException } from '@nestj
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUIDVersion } from 'class-validator';
 import { Repository } from 'typeorm';
+import { ResourceController } from '../controllers/resource.controller';
 import { CreateHardwareDto, UpdateHardwareDto } from '../dtos/hardware';
 import { Hardware } from '../entities/hardware.entity';
+import { Resources } from '../entities/resources.entity';
+import { ResourceService } from './resource.service';
 
 @Injectable()
 export class HardwareService {
   constructor(
     @InjectRepository(Hardware)
-    private hardwareRepository: Repository<Hardware>
+    private hardwareRepository: Repository<Hardware>,
+    private resourceService: ResourceService
   ) {}
 
   findAll():Promise<Hardware[]> {
@@ -20,7 +24,11 @@ export class HardwareService {
 
   async create(data: CreateHardwareDto) {
     try {
-      return await this.hardwareRepository.save(data);
+      const res = await this.hardwareRepository.save(data);
+      if (res) {
+        await this.resourceService.create(res);
+        return res; 
+      }
     } catch(error) {
       throw new BadRequestException(error.detail);
     }
@@ -50,14 +58,19 @@ export class HardwareService {
   }
 
   async remove(id: string) {
-    const hardware = await this.hardwareRepository.findOne({
-      where: {
-        id
-      }
-    });
-    if (!hardware)
-      throw new NotFoundException(`Hardware #${id} not found`);
-    
-    return this.hardwareRepository.delete(id)
+    try {
+      const hardware = await this.hardwareRepository.findOne({
+        where: {
+          id
+        }
+      });
+      if (!hardware)
+        throw new NotFoundException(`Hardware #${id} not found`);
+      
+      const res = await this.hardwareRepository.delete(id)
+      return res;
+    } catch(error) {
+      throw new BadRequestException(error.detail);
+    }
   }
 }

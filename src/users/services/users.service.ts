@@ -1,6 +1,7 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
@@ -32,7 +33,13 @@ export class UsersService {
 
     if (olderData)
       throw new BadRequestException('User already created');
-    return await this.usersRepository.save(data);
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(data.password, salt);
+    return await this.usersRepository.save({
+      ...data,
+      password: hash
+    });
   }
 
   // update(id: number, changes: UpdateUserDto) {

@@ -1,12 +1,12 @@
 import { baseEntity } from "src/base.entity";
-import { StatusResources } from "src/status-resources/entities/statusResources.entity";
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
+import { StatusResources } from "./status-resources.entity";
 
 @Entity('hardware')
 export class Hardware extends baseEntity {
   @Column({ type: 'varchar', length: 200, nullable: false })
   name: string;
-  @OneToOne(() => StatusResources)
+  @ManyToOne(() => StatusResources)
   @JoinColumn()
   status: StatusResources;
   @Column({ type: 'varchar', length: 100, nullable: false })
@@ -17,6 +17,6 @@ export class Hardware extends baseEntity {
   type: string;
   @Column({ type: 'varchar', length: 300, nullable: false })
   observations: string;
-  @Column({ type: 'timestamp', nullable: false })
+  @Column({ type: 'timestamp', nullable: false, name: 'acquisition_date' })
   acquisitionDate: Date
 }

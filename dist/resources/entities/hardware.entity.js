@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Hardware = void 0;
 const base_entity_1 = require("../../base.entity");
-const statusResources_entity_1 = require("../../status-resources/entities/statusResources.entity");
 const typeorm_1 = require("typeorm");
+const status_resources_entity_1 = require("./status-resources.entity");
 let Hardware = class Hardware extends base_entity_1.baseEntity {
 };
 __decorate([
@@ -20,9 +20,9 @@ __decorate([
     __metadata("design:type", String)
 ], Hardware.prototype, "name", void 0);
 __decorate([
-    typeorm_1.OneToOne(() => statusResources_entity_1.StatusResources),
+    typeorm_1.ManyToOne(() => status_resources_entity_1.StatusResources),
     typeorm_1.JoinColumn(),
-    __metadata("design:type", statusResources_entity_1.StatusResources)
+    __metadata("design:type", status_resources_entity_1.StatusResources)
 ], Hardware.prototype, "status", void 0);
 __decorate([
     typeorm_1.Column({ type: 'varchar', length: 100, nullable: false }),
@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:type", String)
 ], Hardware.prototype, "observations", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'timestamp', nullable: false }),
+    typeorm_1.Column({ type: 'timestamp', nullable: false, name: 'acquisition_date' }),
     __metadata("design:type", Date)
 ], Hardware.prototype, "acquisitionDate", void 0);
 Hardware = __decorate([

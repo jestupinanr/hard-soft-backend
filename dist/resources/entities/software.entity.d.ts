@@ -1,5 +1,5 @@
 import { baseEntity } from "src/base.entity";
-import { StatusResources } from "src/status-resources/entities/statusResources.entity";
+import { StatusResources } from "./status-resources.entity";
 export declare class Software extends baseEntity {
     name: string;
     status: StatusResources;

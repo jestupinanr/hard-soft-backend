@@ -18,10 +18,15 @@ const user_entity_1 = require("./users/entities/user.entity");
 const roles_module_1 = require("./roles/roles.module");
 const role_entity_1 = require("./roles/entities/role.entity");
 const resources_module_1 = require("./resources/resources.module");
-const status_resources_module_1 = require("./status-resources/status-resources.module");
-const statusResources_entity_1 = require("./status-resources/entities/statusResources.entity");
 const hardware_entity_1 = require("./resources/entities/hardware.entity");
 const software_entity_1 = require("./resources/entities/software.entity");
+const incidents_module_1 = require("./incidents/incidents.module");
+const incidents_entity_1 = require("./incidents/entities/incidents.entity");
+const incidentsStatus_entity_1 = require("./incidents/entities/incidentsStatus.entity");
+const status_resources_entity_1 = require("./resources/entities/status-resources.entity");
+const resources_entity_1 = require("./resources/entities/resources.entity");
+const assigments_module_1 = require("./assigments/assigments.module");
+const assigment_entity_1 = require("./assigments/entities/assigment.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -37,7 +42,7 @@ AppModule = __decorate([
                     username: 'postgres',
                     password: '12345678',
                     database: 'hard-soft',
-                    entities: [user_entity_1.User, role_entity_1.Roles, statusResources_entity_1.StatusResources, hardware_entity_1.Hardware, software_entity_1.Software],
+                    entities: [user_entity_1.User, role_entity_1.Roles, status_resources_entity_1.StatusResources, hardware_entity_1.Hardware, software_entity_1.Software, incidents_entity_1.Incidents, incidentsStatus_entity_1.IncidentsStatus, resources_entity_1.Resources, assigment_entity_1.Assigment],
                     synchronize: true,
                 }),
                 inject: [config_1.ConfigService],
@@ -45,8 +50,9 @@ AppModule = __decorate([
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
             roles_module_1.RolesModule,
-            status_resources_module_1.StatusResourcesModule,
-            resources_module_1.ResourcesModule
+            resources_module_1.ResourcesModule,
+            incidents_module_1.IncidentsModule,
+            assigments_module_1.AssigmentsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

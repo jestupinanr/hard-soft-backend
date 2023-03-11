@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const software_entity_1 = require("../entities/software.entity");
+const resource_service_1 = require("./resource.service");
 let SoftwareService = class SoftwareService {
-    constructor(softwareRepository) {
+    constructor(softwareRepository, resourceService) {
         this.softwareRepository = softwareRepository;
+        this.resourceService = resourceService;
     }
     findAll() {
         return this.softwareRepository.find({
@@ -28,7 +30,11 @@ let SoftwareService = class SoftwareService {
     }
     async create(data) {
         try {
-            return await this.softwareRepository.save(data);
+            const res = await this.softwareRepository.save(data);
+            if (res) {
+                await this.resourceService.create(undefined, res);
+                return res;
+            }
         }
         catch (error) {
             throw new common_1.BadRequestException(error.detail);
@@ -63,7 +69,8 @@ let SoftwareService = class SoftwareService {
 SoftwareService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(software_entity_1.Software)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        resource_service_1.ResourceService])
 ], SoftwareService);
 exports.SoftwareService = SoftwareService;
 //# sourceMappingURL=software.service.js.map

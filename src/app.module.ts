@@ -2,13 +2,17 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import { User } from './users/entities/user.entity';
 import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/entities/role.entity';
+import { ResourcesModule } from './resources/resources.module';
+import { StatusResourcesModule } from './status-resources/status-resources.module';
+import { StatusResources } from './status-resources/entities/statusResources.entity';
+import { Hardware } from './resources/entities/hardware.entity';
+import { Software } from './resources/entities/software.entity';
 
 @Module({
   imports: [
@@ -22,15 +26,17 @@ import { Roles } from './roles/entities/role.entity';
         username: 'postgres',
         password: '12345678',
         database: 'hard-soft',
-        entities: [User, Roles],
+        entities: [User, Roles, StatusResources, Hardware, Software],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     UsersModule,
-    ProductsModule,
     AuthModule,
-    RolesModule],
+    RolesModule,
+    StatusResourcesModule,
+    ResourcesModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

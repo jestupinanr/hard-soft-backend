@@ -5,24 +5,11 @@ import { Repository } from 'typeorm';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
 
-import { ProductsService } from './../../products/services/products.service';
-
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
-    private productsService: ProductsService, ) {}
-
-  private counterId = 1;
-  // private users: User[] = [
-  //   {
-  //     id: '1',
-  //     email: 'correo@mail.com',
-  //     password: '12345',
-  //     role: 'admin',
-  //   },
-  // ];
+    private usersRepository: Repository<User> ) {}
 
   findAll():Promise<User[]> {
     return this.usersRepository.find();

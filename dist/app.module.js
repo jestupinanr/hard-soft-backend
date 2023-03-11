@@ -11,13 +11,17 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
-const products_module_1 = require("./products/products.module");
 const auth_module_1 = require("./auth/auth.module");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./users/entities/user.entity");
 const roles_module_1 = require("./roles/roles.module");
 const role_entity_1 = require("./roles/entities/role.entity");
+const resources_module_1 = require("./resources/resources.module");
+const status_resources_module_1 = require("./status-resources/status-resources.module");
+const statusResources_entity_1 = require("./status-resources/entities/statusResources.entity");
+const hardware_entity_1 = require("./resources/entities/hardware.entity");
+const software_entity_1 = require("./resources/entities/software.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -33,15 +37,16 @@ AppModule = __decorate([
                     username: 'postgres',
                     password: '12345678',
                     database: 'hard-soft',
-                    entities: [user_entity_1.User, role_entity_1.Roles],
+                    entities: [user_entity_1.User, role_entity_1.Roles, statusResources_entity_1.StatusResources, hardware_entity_1.Hardware, software_entity_1.Software],
                     synchronize: true,
                 }),
                 inject: [config_1.ConfigService],
             }),
             users_module_1.UsersModule,
-            products_module_1.ProductsModule,
             auth_module_1.AuthModule,
-            roles_module_1.RolesModule
+            roles_module_1.RolesModule,
+            status_resources_module_1.StatusResourcesModule,
+            resources_module_1.ResourcesModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

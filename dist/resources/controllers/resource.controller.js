@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResourceController = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_auth_guard_1 = require("../../auth/jwt-auth.guard");
 const resource_service_1 = require("../services/resource.service");
 let ResourceController = class ResourceController {
     constructor(ResourceService) {
@@ -21,6 +22,7 @@ let ResourceController = class ResourceController {
     }
 };
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

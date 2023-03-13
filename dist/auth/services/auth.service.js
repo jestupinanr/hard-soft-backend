@@ -18,9 +18,11 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../users/entities/user.entity");
 const typeorm_2 = require("typeorm");
 const bcrypt = require("bcrypt");
+const jwt_1 = require("@nestjs/jwt");
 let AuthService = class AuthService {
-    constructor(usersRepository) {
+    constructor(usersRepository, jwtAuthService) {
         this.usersRepository = usersRepository;
+        this.jwtAuthService = jwtAuthService;
         this.users = [
             {
                 email: 'correo@mail.com',
@@ -42,11 +44,18 @@ let AuthService = class AuthService {
             throw new common_1.BadRequestException(`User or password incorrect`);
         const samePassword = bcrypt.compareSync(payload.password, user.password);
         if (samePassword) {
-            return this.usersRepository.findOne({
+            const res = await this.usersRepository.findOne({
                 where: {
                     email: payload.email,
                 },
+                relations: ['role']
             });
+            const dataToken = { id: res.id, email: res.email };
+            const token = this.jwtAuthService.sign(dataToken);
+            return {
+                user: res,
+                token: token
+            };
         }
         else {
             throw new common_1.BadRequestException(`User or password incorrect`);
@@ -56,7 +65,8 @@ let AuthService = class AuthService {
 AuthService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        jwt_1.JwtService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssigmentController = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_auth_guard_1 = require("../../auth/jwt-auth.guard");
 const assigment_1 = require("../dtos/assigment");
 const assigment_service_1 = require("../services/assigment.service");
 let AssigmentController = class AssigmentController {
@@ -28,12 +29,14 @@ let AssigmentController = class AssigmentController {
     }
 };
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AssigmentController.prototype, "findAll", null);
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Post(),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),

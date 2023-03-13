@@ -6,12 +6,15 @@ import * as bcrypt from 'bcrypt';
 
 import { authUser } from '../entities/auth.entity';
 import { LoginDto } from '../dtos/auth.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
   @InjectRepository(User)
-  private usersRepository: Repository<User>,) {}
+  private usersRepository: Repository<User>,
+  private jwtAuthService: JwtService
+  ) {}
 
   private users: authUser[] = [
     {
@@ -38,11 +41,18 @@ export class AuthService {
     const samePassword = bcrypt.compareSync(payload.password, user.password);
     
     if(samePassword) {
-      return this.usersRepository.findOne({
+      const res = await this.usersRepository.findOne({
         where: {
           email: payload.email,
         },
+        relations: ['role']
       })
+      const dataToken = { id: res.id, email: res.email };
+      const token = this.jwtAuthService.sign(dataToken)
+      return {
+        user: res,
+        token: token
+      }
     } else {
       throw new BadRequestException(`User or password incorrect`);
     }

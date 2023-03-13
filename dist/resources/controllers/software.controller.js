@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SoftwareController = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_auth_guard_1 = require("../../auth/jwt-auth.guard");
 const software_1 = require("../dtos/software");
 const software_service_1 = require("../services/software.service");
 let SoftwareController = class SoftwareController {
@@ -34,12 +35,14 @@ let SoftwareController = class SoftwareController {
     }
 };
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "findAll", null);
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Post(),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
@@ -47,6 +50,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "create", null);
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Put(':id'),
     __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
     __param(1, common_1.Body()),
@@ -55,6 +59,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "update", null);
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Delete(':id'),
     __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
@@ -62,7 +67,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "remove", null);
 SoftwareController = __decorate([
-    common_1.Controller('software'),
+    common_1.Controller('resources/software'),
     __metadata("design:paramtypes", [software_service_1.SoftwareService])
 ], SoftwareController);
 exports.SoftwareController = SoftwareController;

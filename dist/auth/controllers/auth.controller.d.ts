@@ -4,5 +4,8 @@ export declare class AuthController {
     private authService;
     constructor(authService: AuthService);
     findAll(): import("../entities/auth.entity").authUser[];
-    login(payload: LoginDto): Promise<import("../../users/entities/user.entity").User>;
+    login(payload: LoginDto): Promise<{
+        user: import("../../users/entities/user.entity").User;
+        token: string;
+    }>;
 }

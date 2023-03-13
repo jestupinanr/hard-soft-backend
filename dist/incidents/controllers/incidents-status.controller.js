@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IncidentsStatusController = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_auth_guard_1 = require("../../auth/jwt-auth.guard");
 const incidents_status_1 = require("../dtos/incidents-status");
 const incidents_status_service_1 = require("../services/incidents-status.service");
 let IncidentsStatusController = class IncidentsStatusController {
@@ -28,12 +29,14 @@ let IncidentsStatusController = class IncidentsStatusController {
     }
 };
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], IncidentsStatusController.prototype, "findAll", null);
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Post(),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
@@ -41,7 +44,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], IncidentsStatusController.prototype, "create", null);
 IncidentsStatusController = __decorate([
-    common_1.Controller('incidents-status'),
+    common_1.Controller('incidents/status'),
     __metadata("design:paramtypes", [incidents_status_service_1.IncidentStatusService])
 ], IncidentsStatusController);
 exports.IncidentsStatusController = IncidentsStatusController;

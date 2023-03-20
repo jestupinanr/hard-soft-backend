@@ -12,20 +12,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateIncidentDto = exports.CreateIncidentResourceDto = void 0;
 const class_validator_1 = require("class-validator");
 const mapped_types_1 = require("@nestjs/mapped-types");
-const user_entity_1 = require("../../users/entities/user.entity");
 const incidentsStatus_entity_1 = require("../entities/incidentsStatus.entity");
-const resources_entity_1 = require("../../resources/entities/resources.entity");
+const assigment_entity_1 = require("../../assigments/entities/assigment.entity");
 class CreateIncidentResourceDto {
 }
 __decorate([
+    class_validator_1.IsString(),
+    class_validator_1.Length(1, 200),
+    class_validator_1.IsNotEmpty(),
+    __metadata("design:type", String)
+], CreateIncidentResourceDto.prototype, "title", void 0);
+__decorate([
     class_validator_1.IsUUID(),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", user_entity_1.User)
-], CreateIncidentResourceDto.prototype, "user", void 0);
-__decorate([
-    class_validator_1.IsNotEmpty(),
-    __metadata("design:type", resources_entity_1.Resources)
-], CreateIncidentResourceDto.prototype, "resource", void 0);
+    __metadata("design:type", assigment_entity_1.Assigment)
+], CreateIncidentResourceDto.prototype, "assigment", void 0);
 __decorate([
     class_validator_1.IsUUID(),
     class_validator_1.IsNotEmpty(),

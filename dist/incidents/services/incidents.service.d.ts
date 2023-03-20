@@ -5,5 +5,6 @@ export declare class IncidentsService {
     private incidentsRepository;
     constructor(incidentsRepository: Repository<Incidents>);
     findAll(): Promise<Incidents[]>;
+    findOne(id: string): Promise<Incidents>;
     create(data: CreateIncidentResourceDto): Promise<CreateIncidentResourceDto & Incidents>;
 }

@@ -37,9 +37,6 @@ export class CreateUserDto {
   @Length(0, 30)
   readonly phone1: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @Length(0, 30)
   readonly phone2: string;
 
   @IsNotEmpty()

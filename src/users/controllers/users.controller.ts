@@ -10,6 +10,7 @@ import {
   HttpException,
   HttpStatus,
   UseGuards,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 
 import { UsersService } from '../services/users.service';
@@ -26,10 +27,10 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  // @Get(':id')
-  // get(@Param('id', ParseIntPipe) id: number) {
-  //   return this.usersService.findOne(id);
-  // }
+  @Get(':id')
+  get(@Param('id', ParseUUIDPipe) id: string) {
+    return this.usersService.findOne(id);
+  }
 
   @UseGuards(JwtAuthGuard)
   @Post()

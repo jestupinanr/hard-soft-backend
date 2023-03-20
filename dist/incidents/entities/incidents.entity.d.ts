@@ -1,10 +1,10 @@
+import { Assigment } from "src/assigments/entities/assigment.entity";
 import { baseEntity } from "src/base.entity";
-import { Resources } from "src/resources/entities/resources.entity";
-import { User } from "src/users/entities/user.entity";
 import { IncidentsStatus } from "./incidentsStatus.entity";
 export declare class Incidents extends baseEntity {
-    user: User;
-    resource: Resources;
+    title: string;
+    assigment: Assigment;
     incidentStatus: IncidentsStatus;
     description: string;
+    solution: string;
 }

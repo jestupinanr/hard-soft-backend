@@ -1,17 +1,17 @@
 import { IsString, IsNotEmpty, Length, IsUUID } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
-import { User } from 'src/users/entities/user.entity';
 import { IncidentsStatus } from '../entities/incidentsStatus.entity';
-import { Resources } from 'src/resources/entities/resources.entity';
+import { Assigment } from 'src/assigments/entities/assigment.entity';
 
 export class CreateIncidentResourceDto {
+  @IsString()
+  @Length(1, 200)
+  @IsNotEmpty()
+  title: string;
 
   @IsUUID()
   @IsNotEmpty()
-  user: User;
-
-  @IsNotEmpty()
-  resource: Resources;
+  assigment: Assigment;
 
   @IsUUID()
   @IsNotEmpty()
@@ -21,6 +21,8 @@ export class CreateIncidentResourceDto {
   @Length(1, 300)
   @IsNotEmpty()
   description: string;
+
+  solution:string
 
 }
 

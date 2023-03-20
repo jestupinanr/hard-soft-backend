@@ -13,22 +13,29 @@ export class UsersService {
     private usersRepository: Repository<User> ) {}
 
   findAll():Promise<User[]> {
-    return this.usersRepository.find();
+    return this.usersRepository.find({
+      relations: ['role']
+    });
   }
 
-  // findOne(id: number) {
-  //   const user = this.users.find((item) => item.id === id);
-  //   if (!user) {
-  //     throw new NotFoundException(`User #${id} not found`);
-  //   }
-  //   return user;
-  // }
+  findOne(id: string) {
+    const user = this.usersRepository.findOne({
+      where: {
+        id
+      },
+      relations: ['role']
+    });
+    if (!user) {
+      throw new NotFoundException(`User #${id} not found`);
+    }
+    return user;
+  }
 
   async create(data: CreateUserDto) {
     const olderData = await this.usersRepository.findOne({
       where: {
         email: data.email
-      }
+      },
     });
 
     if (olderData)

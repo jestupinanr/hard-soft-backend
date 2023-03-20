@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Incidents = void 0;
+const assigment_entity_1 = require("../../assigments/entities/assigment.entity");
 const base_entity_1 = require("../../base.entity");
 const resources_entity_1 = require("../../resources/entities/resources.entity");
 const user_entity_1 = require("../../users/entities/user.entity");
@@ -18,15 +19,14 @@ const incidentsStatus_entity_1 = require("./incidentsStatus.entity");
 let Incidents = class Incidents extends base_entity_1.baseEntity {
 };
 __decorate([
-    typeorm_1.ManyToOne(() => user_entity_1.User, {}),
-    typeorm_1.JoinColumn(),
-    __metadata("design:type", user_entity_1.User)
-], Incidents.prototype, "user", void 0);
+    typeorm_1.Column({ type: 'varchar', length: 200, nullable: false }),
+    __metadata("design:type", String)
+], Incidents.prototype, "title", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => resources_entity_1.Resources, { nullable: false }),
+    typeorm_1.ManyToOne(() => assigment_entity_1.Assigment, {}),
     typeorm_1.JoinColumn(),
-    __metadata("design:type", resources_entity_1.Resources)
-], Incidents.prototype, "resource", void 0);
+    __metadata("design:type", assigment_entity_1.Assigment)
+], Incidents.prototype, "assigment", void 0);
 __decorate([
     typeorm_1.ManyToOne(() => incidentsStatus_entity_1.IncidentsStatus, { nullable: true }),
     typeorm_1.JoinColumn(),
@@ -36,6 +36,10 @@ __decorate([
     typeorm_1.Column({ type: 'varchar', length: 300, nullable: false }),
     __metadata("design:type", String)
 ], Incidents.prototype, "description", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'varchar', length: 300, nullable: true }),
+    __metadata("design:type", String)
+], Incidents.prototype, "solution", void 0);
 Incidents = __decorate([
     typeorm_1.Entity('incidents')
 ], Incidents);

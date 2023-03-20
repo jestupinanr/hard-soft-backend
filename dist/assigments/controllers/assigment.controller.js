@@ -24,6 +24,15 @@ let AssigmentController = class AssigmentController {
     findAll() {
         return this.assigmentService.findAll();
     }
+    get(id) {
+        return this.assigmentService.findOne(id);
+    }
+    getByUser(id) {
+        return this.assigmentService.findAllByUser(id);
+    }
+    getByResource(id) {
+        return this.assigmentService.findAllByResource(id);
+    }
     create(payload) {
         return this.assigmentService.create(payload);
     }
@@ -35,6 +44,30 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AssigmentController.prototype, "findAll", null);
+__decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AssigmentController.prototype, "get", null);
+__decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
+    common_1.Get('/user/:id'),
+    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AssigmentController.prototype, "getByUser", null);
+__decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
+    common_1.Get('/resource/:id'),
+    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AssigmentController.prototype, "getByResource", null);
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Post(),

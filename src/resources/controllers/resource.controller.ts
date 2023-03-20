@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ResourceService } from '../services/resource.service';
 
@@ -11,5 +11,10 @@ export class ResourceController {
   @Get()
   findAll() {
     return this.ResourceService.findAll()
+  }
+
+  @Get('get-one/:id')
+  findOne(@Param('id', ParseUUIDPipe) id: string,) {
+    return this.ResourceService.findOne(id)
   }
 }

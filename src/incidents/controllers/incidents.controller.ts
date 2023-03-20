@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateIncidentResourceDto } from '../dtos/incidents';
 import { IncidentsService } from '../services/incidents.service';
@@ -11,6 +11,11 @@ export class IncidentsController {
   @Get()
   findAll() {
     return this.incidentService.findAll()
+  }
+
+  @Get(':id')
+  get(@Param('id', ParseUUIDPipe) id: string) {
+    return this.incidentService.findOne(id);
   }
 
   @UseGuards(JwtAuthGuard)

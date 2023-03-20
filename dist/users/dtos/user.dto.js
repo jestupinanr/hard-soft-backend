@@ -58,12 +58,6 @@ __decorate([
 __decorate([
     class_validator_1.IsNotEmpty(),
     class_validator_1.IsString(),
-    class_validator_1.Length(0, 30),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "phone2", void 0);
-__decorate([
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "address", void 0);
 __decorate([

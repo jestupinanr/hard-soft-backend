@@ -4,6 +4,7 @@ export declare class UsersController {
     private usersService;
     constructor(usersService: UsersService);
     findAll(): Promise<import("../entities/user.entity").User[]>;
+    get(id: string): Promise<import("../entities/user.entity").User>;
     create(payload: CreateUserDto): Promise<{
         password: string;
         nit: string;

@@ -23,8 +23,19 @@ let ResourceService = class ResourceService {
     }
     findAll() {
         return this.ResourceRepository.find({
-            relations: ['hardware', 'software',]
+            relations: ['hardware', 'hardware.status', 'software', 'software.status']
         });
+    }
+    async findOne(id) {
+        const resource = await this.ResourceRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['hardware', 'hardware.status', 'software', 'software.status']
+        });
+        if (!resource)
+            throw new common_1.NotFoundException(`Resource #${id} not found`);
+        return resource;
     }
     async create(hardware, software) {
         if (hardware)

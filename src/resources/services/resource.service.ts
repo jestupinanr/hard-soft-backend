@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Hardware } from '../entities/hardware.entity';
@@ -14,8 +14,22 @@ export class ResourceService {
 
   findAll():Promise<Resources[]> {
     return this.ResourceRepository.find({
-      relations: ['hardware', 'software',]
+      relations: ['hardware', 'hardware.status', 'software', 'software.status']
     });
+  }
+
+  async findOne(id: string):Promise<Resources> {
+    const resource =  await this.ResourceRepository.findOne({
+      where: {
+        id
+      },
+      relations: ['hardware', 'hardware.status', 'software', 'software.status']
+    });
+
+    if (!resource)
+      throw new NotFoundException(`Resource #${id} not found`);
+
+    return resource
   }
 
   async create(hardware?: Hardware, software?:Software) {

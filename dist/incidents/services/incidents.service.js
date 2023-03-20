@@ -22,7 +22,21 @@ let IncidentsService = class IncidentsService {
         this.incidentsRepository = incidentsRepository;
     }
     findAll() {
-        return this.incidentsRepository.find();
+        return this.incidentsRepository.find({
+            relations: ['incidentStatus', 'assigment', 'assigment.user', 'assigment.user.role', 'assigment.resource', 'assigment.resource.hardware', 'assigment.resource.software']
+        });
+    }
+    findOne(id) {
+        const assigment = this.incidentsRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['incidentStatus', 'assigment', 'assigment.user', 'assigment.user.role', 'assigment.resource', 'assigment.resource.hardware', 'assigment.resource.software']
+        });
+        if (!assigment) {
+            throw new common_1.NotFoundException(`Incident #${id} not found`);
+        }
+        return assigment;
     }
     async create(data) {
         try {

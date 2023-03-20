@@ -23,8 +23,48 @@ let AssigmentService = class AssigmentService {
     }
     findAll() {
         return this.assigmentRepository.find({
-            relations: ['user', 'resource', 'resource.hardware', 'resource.software']
+            relations: ['user', 'user.role', 'resource', 'resource.hardware', 'resource.software']
         });
+    }
+    findOne(id) {
+        const assigment = this.assigmentRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['user', 'user.role', 'resource', 'resource.hardware', 'resource.software']
+        });
+        if (!assigment) {
+            throw new common_1.NotFoundException(`Assigmente #${id} not found`);
+        }
+        return assigment;
+    }
+    findAllByUser(id) {
+        const assigment = this.assigmentRepository.find({
+            where: {
+                user: {
+                    id
+                }
+            },
+            relations: ['user', 'user.role', 'resource', 'resource.hardware', 'resource.software']
+        });
+        if (!assigment) {
+            throw new common_1.NotFoundException(`Assigmente #${id} not found`);
+        }
+        return assigment;
+    }
+    findAllByResource(id) {
+        const assigment = this.assigmentRepository.findOne({
+            where: {
+                resource: {
+                    id
+                }
+            },
+            relations: ['user', 'user.role', 'resource', 'resource.hardware', 'resource.software']
+        });
+        if (!assigment) {
+            throw new common_1.NotFoundException(`Assigment #${id} not found`);
+        }
+        return assigment;
     }
     async create(data) {
         try {

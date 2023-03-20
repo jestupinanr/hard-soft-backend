@@ -24,6 +24,9 @@ let IncidentsController = class IncidentsController {
     findAll() {
         return this.incidentService.findAll();
     }
+    get(id) {
+        return this.incidentService.findOne(id);
+    }
     create(payload) {
         return this.incidentService.create(payload);
     }
@@ -35,6 +38,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], IncidentsController.prototype, "findAll", null);
+__decorate([
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], IncidentsController.prototype, "get", null);
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Post(),

@@ -23,13 +23,27 @@ let UsersService = class UsersService {
         this.usersRepository = usersRepository;
     }
     findAll() {
-        return this.usersRepository.find();
+        return this.usersRepository.find({
+            relations: ['role']
+        });
+    }
+    findOne(id) {
+        const user = this.usersRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['role']
+        });
+        if (!user) {
+            throw new common_1.NotFoundException(`User #${id} not found`);
+        }
+        return user;
     }
     async create(data) {
         const olderData = await this.usersRepository.findOne({
             where: {
                 email: data.email
-            }
+            },
         });
         if (olderData)
             throw new common_1.BadRequestException('User already created');

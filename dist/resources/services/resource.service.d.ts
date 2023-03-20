@@ -6,6 +6,7 @@ export declare class ResourceService {
     private ResourceRepository;
     constructor(ResourceRepository: Repository<Resources>);
     findAll(): Promise<Resources[]>;
+    findOne(id: string): Promise<Resources>;
     create(hardware?: Hardware, software?: Software): Promise<{
         hardware: Hardware;
     } & Resources>;

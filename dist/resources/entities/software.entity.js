@@ -12,7 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Software = void 0;
 const base_entity_1 = require("../../base.entity");
 const typeorm_1 = require("typeorm");
+const brand_entity_1 = require("./brand.entity");
 const status_resources_entity_1 = require("./status-resources.entity");
+const type_entity_1 = require("./type.entity");
 let Software = class Software extends base_entity_1.baseEntity {
 };
 __decorate([
@@ -25,17 +27,19 @@ __decorate([
     __metadata("design:type", status_resources_entity_1.StatusResources)
 ], Software.prototype, "status", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 100, nullable: false }),
-    __metadata("design:type", String)
+    typeorm_1.ManyToOne(() => brand_entity_1.ResourceBrand),
+    typeorm_1.JoinColumn(),
+    __metadata("design:type", brand_entity_1.ResourceBrand)
 ], Software.prototype, "brand", void 0);
+__decorate([
+    typeorm_1.ManyToOne(() => type_entity_1.ResourceType),
+    typeorm_1.JoinColumn(),
+    __metadata("design:type", type_entity_1.ResourceType)
+], Software.prototype, "type", void 0);
 __decorate([
     typeorm_1.Column({ type: 'varchar', length: 100, nullable: false }),
     __metadata("design:type", String)
 ], Software.prototype, "licenseNumber", void 0);
-__decorate([
-    typeorm_1.Column({ type: 'varchar', length: 100, nullable: false }),
-    __metadata("design:type", String)
-], Software.prototype, "type", void 0);
 __decorate([
     typeorm_1.Column({ type: 'varchar', length: 300, nullable: false }),
     __metadata("design:type", String)

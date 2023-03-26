@@ -13,6 +13,8 @@ exports.UpdateHardwareDto = exports.CreateHardwareDto = void 0;
 const class_validator_1 = require("class-validator");
 const mapped_types_1 = require("@nestjs/mapped-types");
 const status_resources_entity_1 = require("../entities/status-resources.entity");
+const type_entity_1 = require("../entities/type.entity");
+const brand_entity_1 = require("../entities/brand.entity");
 class CreateHardwareDto {
 }
 __decorate([
@@ -28,10 +30,10 @@ __decorate([
     __metadata("design:type", status_resources_entity_1.StatusResources)
 ], CreateHardwareDto.prototype, "status", void 0);
 __decorate([
-    class_validator_1.IsString(),
+    class_validator_1.IsUUID(),
     class_validator_1.Length(1, 100),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", String)
+    __metadata("design:type", brand_entity_1.ResourceBrand)
 ], CreateHardwareDto.prototype, "brand", void 0);
 __decorate([
     class_validator_1.IsString(),
@@ -40,10 +42,10 @@ __decorate([
     __metadata("design:type", String)
 ], CreateHardwareDto.prototype, "model", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 100),
+    class_validator_1.IsUUID(),
+    class_validator_1.Length(1, 50),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", String)
+    __metadata("design:type", type_entity_1.ResourceType)
 ], CreateHardwareDto.prototype, "type", void 0);
 __decorate([
     class_validator_1.IsString(),

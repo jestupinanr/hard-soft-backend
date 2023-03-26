@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CreateHardwareDto, UpdateHardwareDto } from '../dtos/hardware';
-import { HardwareService } from '../services/hardware.service';
+import { CreateHardwareDto, UpdateHardwareDto } from '../../dtos/hardware';
+import { HardwareService } from '../../services/hardware/hardware.service';
 
 @Controller('resources/hardware')
 export class HardwareController {

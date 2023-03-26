@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
-import { Hardware } from '../entities/hardware.entity';
+import { Hardware } from '../entities/hardware/hardware.entity';
 import { Resources } from '../entities/resources.entity';
-import { Software } from '../entities/software.entity';
+import { Software } from '../entities/software/software.entity';
 export declare class ResourceService {
     private ResourceRepository;
     constructor(ResourceRepository: Repository<Resources>);

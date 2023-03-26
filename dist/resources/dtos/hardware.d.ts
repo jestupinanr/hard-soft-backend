@@ -1,10 +1,12 @@
 import { StatusResources } from '../entities/status-resources.entity';
+import { ResourceType } from '../entities/type.entity';
+import { ResourceBrand } from '../entities/brand.entity';
 export declare class CreateHardwareDto {
     readonly name: string;
     readonly status: StatusResources;
-    readonly brand: string;
+    readonly brand: ResourceBrand;
     readonly model: string;
-    readonly type: string;
+    readonly type: ResourceType;
     readonly observations: string;
     readonly acquisitionDate: Date;
 }

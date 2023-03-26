@@ -16,7 +16,7 @@ exports.SoftwareService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const software_entity_1 = require("../entities/software.entity");
+const software_entity_1 = require("../entities/software/software.entity");
 const resource_service_1 = require("./resource.service");
 let SoftwareService = class SoftwareService {
     constructor(softwareRepository, resourceService) {
@@ -32,8 +32,8 @@ let SoftwareService = class SoftwareService {
         try {
             const res = await this.softwareRepository.save(data);
             if (res) {
-                await this.resourceService.create(undefined, res);
-                return res;
+                const resource = await this.resourceService.create(undefined, res);
+                return resource;
             }
         }
         catch (error) {

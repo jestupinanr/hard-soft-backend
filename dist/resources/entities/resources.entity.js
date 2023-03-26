@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Resources = void 0;
 const base_entity_1 = require("../../base.entity");
 const typeorm_1 = require("typeorm");
-const hardware_entity_1 = require("./hardware.entity");
-const software_entity_1 = require("./software.entity");
+const hardware_entity_1 = require("./hardware/hardware.entity");
+const software_entity_1 = require("./software/software.entity");
 let Resources = class Resources extends base_entity_1.baseEntity {
 };
 __decorate([

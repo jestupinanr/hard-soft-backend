@@ -9,8 +9,8 @@ import { User } from './users/entities/user.entity';
 import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/entities/role.entity';
 import { ResourcesModule } from './resources/resources.module';
-import { Hardware } from './resources/entities/hardware.entity';
-import { Software } from './resources/entities/software.entity';
+import { Hardware } from './resources/entities/hardware/hardware.entity';
+import { Software } from './resources/entities/software/software.entity';
 import { IncidentsModule } from './incidents/incidents.module';
 import { Incidents } from './incidents/entities/incidents.entity';
 import { IncidentsStatus } from './incidents/entities/incidentsStatus.entity';
@@ -18,6 +18,8 @@ import { StatusResources } from './resources/entities/status-resources.entity';
 import { Resources } from './resources/entities/resources.entity';
 import { AssigmentsModule } from './assigments/assigments.module';
 import { Assigment } from './assigments/entities/assigment.entity';
+import { ResourceBrand } from './resources/entities/brand.entity';
+import { ResourceType } from './resources/entities/type.entity';
 
 @Module({
   imports: [
@@ -31,7 +33,7 @@ import { Assigment } from './assigments/entities/assigment.entity';
         username: 'postgres',
         password: '12345678',
         database: 'hard-soft',
-        entities: [User, Roles, StatusResources, Hardware, Software, Incidents, IncidentsStatus, Resources, Assigment],
+        entities: [User, Roles, StatusResources, Hardware, ResourceBrand,ResourceType, Software, Incidents, IncidentsStatus, Resources, Assigment],
         synchronize: true,
       }),
       inject: [ConfigService],

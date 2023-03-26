@@ -1,5 +1,5 @@
-export declare class Brand {
-    id: number;
+import { baseEntity } from "src/base.entity";
+export declare class ResourceBrand extends baseEntity {
     name: string;
-    image: string;
+    resource: string;
 }

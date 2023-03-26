@@ -1,10 +1,12 @@
 import { StatusResources } from '../entities/status-resources.entity';
+import { ResourceBrand } from '../entities/brand.entity';
+import { ResourceType } from '../entities/type.entity';
 export declare class CreateSoftwareDto {
     readonly name: string;
     readonly status: StatusResources;
-    readonly brand: string;
+    readonly brand: ResourceBrand;
     readonly licenseNumber: string;
-    readonly type: string;
+    readonly type: ResourceType;
     readonly observations: string;
     readonly acquisitionDate: Date;
 }

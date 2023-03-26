@@ -2,7 +2,7 @@ import { BadRequestException, Body, Injectable, NotFoundException } from '@nestj
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSoftwareDto, UpdateSoftwareDto } from '../dtos/software';
-import { Software } from '../entities/software.entity';
+import { Software } from '../entities/software/software.entity';
 import { ResourceService } from './resource.service';
 
 @Injectable()
@@ -23,8 +23,8 @@ export class SoftwareService {
     try {
       const res = await this.softwareRepository.save(data);
       if (res) {
-        await this.resourceService.create(undefined, res);
-        return res; 
+        const resource = await this.resourceService.create(undefined, res);
+        return resource; 
       }
     } catch(error) {
       throw new BadRequestException(error.detail);

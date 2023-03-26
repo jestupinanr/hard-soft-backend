@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatusResourcesController = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_auth_guard_1 = require("../../auth/jwt-auth.guard");
 const status_resources_1 = require("../dtos/status-resources");
 const status_resources_service_1 = require("../services/status-resources.service");
 let StatusResourcesController = class StatusResourcesController {
@@ -28,12 +29,14 @@ let StatusResourcesController = class StatusResourcesController {
     }
 };
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], StatusResourcesController.prototype, "findAll", null);
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Post(),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
@@ -41,7 +44,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StatusResourcesController.prototype, "create", null);
 StatusResourcesController = __decorate([
-    common_1.Controller('status-resources'),
+    common_1.Controller('resources/status'),
     __metadata("design:paramtypes", [status_resources_service_1.StatusResourcesService])
 ], StatusResourcesController);
 exports.StatusResourcesController = StatusResourcesController;

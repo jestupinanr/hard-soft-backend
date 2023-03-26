@@ -2,11 +2,11 @@ import { BadRequestException, Body, Injectable, NotFoundException } from '@nestj
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUIDVersion } from 'class-validator';
 import { Repository } from 'typeorm';
-import { ResourceController } from '../controllers/resource.controller';
-import { CreateHardwareDto, UpdateHardwareDto } from '../dtos/hardware';
-import { Hardware } from '../entities/hardware.entity';
-import { Resources } from '../entities/resources.entity';
-import { ResourceService } from './resource.service';
+import { ResourceController } from '../../controllers/resource.controller';
+import { CreateHardwareDto, UpdateHardwareDto } from '../../dtos/hardware';
+import { Hardware } from '../../entities/hardware/hardware.entity';
+import { Resources } from '../../entities/resources.entity';
+import { ResourceService } from '../resource.service';
 
 @Injectable()
 export class HardwareService {
@@ -26,8 +26,8 @@ export class HardwareService {
     try {
       const res = await this.hardwareRepository.save(data);
       if (res) {
-        await this.resourceService.create(res);
-        return res; 
+        const resource = await this.resourceService.create(res);
+        return resource;
       }
     } catch(error) {
       throw new BadRequestException(error.detail);

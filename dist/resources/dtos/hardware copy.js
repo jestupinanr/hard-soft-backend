@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateHardwareDto = exports.CreateHardwareDto = void 0;
+exports.CreateHardwareBrandDto = exports.UpdateHardwareDto = exports.CreateHardwareDto = void 0;
 const class_validator_1 = require("class-validator");
 const mapped_types_1 = require("@nestjs/mapped-types");
-const statusResources_entity_1 = require("../../status-resources/entities/statusResources.entity");
+const status_resources_entity_1 = require("../entities/status-resources.entity");
 class CreateHardwareDto {
 }
 __decorate([
@@ -25,7 +25,7 @@ __decorate([
     class_validator_1.IsUUID(),
     class_validator_1.Length(1, 50),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", statusResources_entity_1.StatusResources)
+    __metadata("design:type", status_resources_entity_1.StatusResources)
 ], CreateHardwareDto.prototype, "status", void 0);
 __decorate([
     class_validator_1.IsString(),
@@ -62,4 +62,13 @@ exports.CreateHardwareDto = CreateHardwareDto;
 class UpdateHardwareDto extends mapped_types_1.PartialType(CreateHardwareDto) {
 }
 exports.UpdateHardwareDto = UpdateHardwareDto;
+class CreateHardwareBrandDto {
+}
+__decorate([
+    class_validator_1.IsString(),
+    class_validator_1.Length(1, 50),
+    class_validator_1.IsNotEmpty(),
+    __metadata("design:type", String)
+], CreateHardwareBrandDto.prototype, "name", void 0);
+exports.CreateHardwareBrandDto = CreateHardwareBrandDto;
 //# sourceMappingURL=hardware%20copy.js.map

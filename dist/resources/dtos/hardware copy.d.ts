@@ -1,4 +1,4 @@
-import { StatusResources } from 'src/status-resources/entities/statusResources.entity';
+import { StatusResources } from '../entities/status-resources.entity';
 export declare class CreateHardwareDto {
     readonly name: string;
     readonly status: StatusResources;
@@ -10,5 +10,8 @@ export declare class CreateHardwareDto {
 }
 declare const UpdateHardwareDto_base: import("@nestjs/mapped-types").MappedType<Partial<CreateHardwareDto>>;
 export declare class UpdateHardwareDto extends UpdateHardwareDto_base {
+}
+export declare class CreateHardwareBrandDto {
+    readonly name: string;
 }
 export {};

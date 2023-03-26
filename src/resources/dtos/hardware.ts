@@ -1,6 +1,8 @@
 import { IsString, IsNotEmpty, Length, IsDateString, IsUUID, } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import { StatusResources } from '../entities/status-resources.entity';
+import { ResourceType } from '../entities/type.entity';
+import { ResourceBrand } from '../entities/brand.entity';
 
 export class CreateHardwareDto {
 
@@ -14,20 +16,20 @@ export class CreateHardwareDto {
   @IsNotEmpty()
   readonly status: StatusResources;
 
-  @IsString()
+  @IsUUID()
   @Length(1, 100)
   @IsNotEmpty()
-  readonly brand: string;
+  readonly brand: ResourceBrand;
 
   @IsString()
   @Length(1, 100)
   @IsNotEmpty()
   readonly model: string;
 
-  @IsString()
-  @Length(1, 100)
+  @IsUUID()
+  @Length(1, 50)
   @IsNotEmpty()
-  readonly type: string;
+  readonly type: ResourceType;
 
   @IsString()
   @Length(1, 300)
@@ -43,3 +45,5 @@ export class CreateHardwareDto {
 }
 
 export class UpdateHardwareDto extends PartialType(CreateHardwareDto) {}
+
+

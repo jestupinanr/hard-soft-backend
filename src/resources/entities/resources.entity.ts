@@ -1,7 +1,7 @@
 import { baseEntity } from "src/base.entity";
 import { Column, Entity, JoinColumn, ManyToOne, } from "typeorm";
-import { Hardware } from "./hardware.entity";
-import { Software } from "./software.entity";
+import { Hardware } from "./hardware/hardware.entity";
+import { Software } from "./software/software.entity";
 
 @Entity('resources')
 export class Resources extends baseEntity {

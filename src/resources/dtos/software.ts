@@ -1,6 +1,8 @@
 import { IsString, IsNotEmpty, Length, IsDateString, IsUUID, } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import { StatusResources } from '../entities/status-resources.entity';
+import { ResourceBrand } from '../entities/brand.entity';
+import { ResourceType } from '../entities/type.entity';
 
 export class CreateSoftwareDto {
 
@@ -14,20 +16,20 @@ export class CreateSoftwareDto {
   @IsNotEmpty()
   readonly status: StatusResources;
 
-  @IsString()
+  @IsUUID()
   @Length(1, 100)
   @IsNotEmpty()
-  readonly brand: string;
+  readonly brand: ResourceBrand;
 
   @IsString()
   @Length(1, 100)
   @IsNotEmpty()
   readonly licenseNumber: string;
 
-  @IsString()
-  @Length(1, 100)
+  @IsUUID()
+  @Length(1, 50)
   @IsNotEmpty()
-  readonly type: string;
+  readonly type: ResourceType;
 
   @IsString()
   @Length(1, 300)

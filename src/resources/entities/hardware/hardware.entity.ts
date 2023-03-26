@@ -1,20 +1,24 @@
 import { baseEntity } from "src/base.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
-import { StatusResources } from "./status-resources.entity";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { ResourceBrand } from "../brand.entity";
+import { StatusResources } from "../status-resources.entity";
+import { ResourceType } from "../type.entity";
 
-@Entity('software')
-export class Software extends baseEntity {
+@Entity('hardware')
+export class Hardware extends baseEntity {
   @Column({ type: 'varchar', length: 200, nullable: false })
   name: string;
   @ManyToOne(() => StatusResources)
   @JoinColumn()
   status: StatusResources;
+  @ManyToOne(() => ResourceBrand)
+  @JoinColumn()
+  brand: ResourceBrand;
+  @ManyToOne(() => ResourceType)
+  @JoinColumn()
+  type: ResourceType;
   @Column({ type: 'varchar', length: 100, nullable: false })
-  brand: string;
-  @Column({ type: 'varchar', length: 100, nullable: false })
-  licenseNumber: string;
-  @Column({ type: 'varchar', length: 100, nullable: false })
-  type: string;
+  model: string;
   @Column({ type: 'varchar', length: 300, nullable: false })
   observations: string;
   @Column({ type: 'timestamp', nullable: false, name: 'acquisition_date' })

@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { CreateIncidentResourceDto } from '../dtos/incidents';
+import { CreateIncidentResourceDto, UpdateIncidentDto } from '../dtos/incidents';
 import { Incidents } from '../entities/incidents.entity';
 export declare class IncidentsService {
     private incidentsRepository;
@@ -7,4 +7,5 @@ export declare class IncidentsService {
     findAll(): Promise<Incidents[]>;
     findOne(id: string): Promise<Incidents>;
     create(data: CreateIncidentResourceDto): Promise<CreateIncidentResourceDto & Incidents>;
+    update(id: string, changes: UpdateIncidentDto): Promise<Incidents>;
 }

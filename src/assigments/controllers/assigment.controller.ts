@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CreateAssigmentDto } from '../dtos/assigment';
+import { CreateAssigmentDto, UpdateAssigmentDto } from '../dtos/assigment';
 import { AssigmentService } from '../services/assigment.service';
 
 @Controller('assigment')
@@ -35,5 +35,14 @@ export class AssigmentController {
   @Post()
   create(@Body() payload: CreateAssigmentDto) {
     return this.assigmentService.create(payload);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put(':id')
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() payload: UpdateAssigmentDto,
+  ) {
+    return this.assigmentService.update(id, payload);
   }
 }

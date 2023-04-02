@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CreateIncidentResourceDto } from '../dtos/incidents';
+import { CreateIncidentResourceDto, UpdateIncidentDto } from '../dtos/incidents';
 import { IncidentsService } from '../services/incidents.service';
 
 @Controller('incidents')
@@ -22,5 +22,14 @@ export class IncidentsController {
   @Post()
   create(@Body() payload: CreateIncidentResourceDto) {
     return this.incidentService.create(payload);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put(':id')
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() payload: UpdateIncidentDto,
+  ) {
+    return this.incidentService.update(id, payload);
   }
 }

@@ -38,6 +38,10 @@ __decorate([
     class_validator_1.IsNotEmpty(),
     __metadata("design:type", String)
 ], CreateIncidentResourceDto.prototype, "description", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    __metadata("design:type", String)
+], CreateIncidentResourceDto.prototype, "solution", void 0);
 exports.CreateIncidentResourceDto = CreateIncidentResourceDto;
 class UpdateIncidentDto extends mapped_types_1.PartialType(CreateIncidentResourceDto) {
 }

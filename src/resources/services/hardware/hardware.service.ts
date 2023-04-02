@@ -53,7 +53,8 @@ export class HardwareService {
     return this.hardwareRepository.findOne({
       where: {
         id
-      }
+      },
+      relations: ['brand', 'type', 'status']
     });
   }
 

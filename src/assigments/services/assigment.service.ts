@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateAssigmentDto } from '../dtos/assigment';
+import { CreateAssigmentDto, UpdateAssigmentDto } from '../dtos/assigment';
 import { Assigment } from '../entities/assigment.entity';
 
 @Injectable()
@@ -67,5 +67,29 @@ export class AssigmentService {
     } catch(error) {
       throw new BadRequestException(error.detail);
     }
+  }
+
+  async update(id: string, changes: UpdateAssigmentDto) {
+    const software = this.assigmentRepository.findOne({
+      where: {
+        id
+      }
+    });
+
+    if (!software)
+      throw new NotFoundException(`Assigment #${id} not found`);
+    
+    // Update
+    await this.assigmentRepository.update(id,
+      {
+        ...changes
+      });
+
+    return this.assigmentRepository.findOne({
+      where: {
+        id
+      },
+      relations: ['user', 'user.role', 'resource', 'resource.hardware', 'resource.software']
+    });
   }
 }

@@ -30,6 +30,9 @@ let UsersController = class UsersController {
     create(payload) {
         return this.usersService.create(payload);
     }
+    update(id, payload) {
+        return this.usersService.update(id, payload);
+    }
 };
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
@@ -53,6 +56,14 @@ __decorate([
     __metadata("design:paramtypes", [user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "create", null);
+__decorate([
+    common_1.Put(':id'),
+    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, user_dto_1.UpdateUserDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "update", null);
 UsersController = __decorate([
     common_1.Controller('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

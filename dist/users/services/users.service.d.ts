@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { CreateUserDto } from '../dtos/user.dto';
+import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
 export declare class UsersService {
     private usersRepository;
@@ -18,4 +18,5 @@ export declare class UsersService {
         address: string;
         bornDate: string;
     } & User>;
+    update(id: string, changes: UpdateUserDto): Promise<User>;
 }

@@ -23,7 +23,8 @@ let IncidentsService = class IncidentsService {
     }
     findAll() {
         return this.incidentsRepository.find({
-            relations: ['incidentStatus', 'assigment', 'assigment.user', 'assigment.user.role', 'assigment.resource', 'assigment.resource.hardware', 'assigment.resource.software']
+            relations: ['incidentStatus', 'assigment', 'assigment.user', 'assigment.user.role', 'assigment.resource', 'assigment.resource.hardware', 'assigment.resource.hardware.brand', 'assigment.resource.hardware.type',
+                'assigment.resource.software.brand', 'assigment.resource.software.type']
         });
     }
     findOne(id) {
@@ -31,7 +32,8 @@ let IncidentsService = class IncidentsService {
             where: {
                 id
             },
-            relations: ['incidentStatus', 'assigment', 'assigment.user', 'assigment.user.role', 'assigment.resource', 'assigment.resource.hardware', 'assigment.resource.software']
+            relations: ['incidentStatus', 'assigment', 'assigment.user', 'assigment.user.role', 'assigment.resource', 'assigment.resource.hardware', 'assigment.resource.hardware.brand', 'assigment.resource.hardware.type',
+                'assigment.resource.software.brand', 'assigment.resource.software.type']
         });
         if (!assigment) {
             throw new common_1.NotFoundException(`Incident #${id} not found`);
@@ -45,6 +47,23 @@ let IncidentsService = class IncidentsService {
         catch (error) {
             throw new common_1.BadRequestException(error.detail);
         }
+    }
+    async update(id, changes) {
+        const incident = this.incidentsRepository.findOne({
+            where: {
+                id
+            }
+        });
+        if (!incident)
+            throw new common_1.NotFoundException(`Incident #${id} not found`);
+        await this.incidentsRepository.update(id, Object.assign({}, changes));
+        return this.incidentsRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['incidentStatus', 'assigment', 'assigment.user', 'assigment.user.role', 'assigment.resource', 'assigment.resource.hardware', 'assigment.resource.hardware.brand', 'assigment.resource.hardware.type',
+                'assigment.resource.software.brand', 'assigment.resource.software.type']
+        });
     }
 };
 IncidentsService = __decorate([

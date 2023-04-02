@@ -30,6 +30,9 @@ let IncidentsController = class IncidentsController {
     create(payload) {
         return this.incidentService.create(payload);
     }
+    update(id, payload) {
+        return this.incidentService.update(id, payload);
+    }
 };
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
@@ -53,6 +56,15 @@ __decorate([
     __metadata("design:paramtypes", [incidents_1.CreateIncidentResourceDto]),
     __metadata("design:returntype", void 0)
 ], IncidentsController.prototype, "create", null);
+__decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
+    common_1.Put(':id'),
+    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, incidents_1.UpdateIncidentDto]),
+    __metadata("design:returntype", void 0)
+], IncidentsController.prototype, "update", null);
 IncidentsController = __decorate([
     common_1.Controller('incidents'),
     __metadata("design:paramtypes", [incidents_service_1.IncidentsService])

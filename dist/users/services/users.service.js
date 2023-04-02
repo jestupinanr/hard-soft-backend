@@ -51,6 +51,27 @@ let UsersService = class UsersService {
         const hash = bcrypt.hashSync(data.password, salt);
         return await this.usersRepository.save(Object.assign(Object.assign({}, data), { password: hash }));
     }
+    async update(id, changes) {
+        const user = this.usersRepository.findOne({
+            where: {
+                id
+            }
+        });
+        if (!user)
+            throw new common_1.NotFoundException(`User #${id} not found`);
+        const dataSend = Object.assign({}, changes);
+        if (changes.password) {
+            const salt = bcrypt.genSaltSync(10);
+            dataSend.password = bcrypt.hashSync(changes.password, salt);
+        }
+        await this.usersRepository.update(id, Object.assign({}, dataSend));
+        return this.usersRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['role']
+        });
+    }
 };
 UsersService = __decorate([
     common_1.Injectable(),

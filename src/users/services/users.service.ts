@@ -49,15 +49,36 @@ export class UsersService {
     });
   }
 
-  // update(id: number, changes: UpdateUserDto) {
-  //   const user = this.findOne(id);
-  //   const index = this.users.findIndex((item) => item.id === id);
-  //   this.users[index] = {
-  //     ...user,
-  //     ...changes,
-  //   };
-  //   return this.users[index];
-  // }
+  async update(id: string, changes: UpdateUserDto) {
+    const user = this.usersRepository.findOne({
+      where: {
+        id
+      }
+    });
+
+    if (!user)
+      throw new NotFoundException(`User #${id} not found`);
+
+    const dataSend = { ...changes };
+    // Update password?
+    if (changes.password) {
+      const salt = bcrypt.genSaltSync(10);
+      dataSend.password = bcrypt.hashSync(changes.password, salt);
+    }
+
+    // Update
+    await this.usersRepository.update(id,
+      {
+        ...dataSend
+      });
+
+    return this.usersRepository.findOne({
+      where: {
+        id
+      },
+      relations: ['role']
+    });
+  }
 
   // remove(id: number) {
   //   const index = this.users.findIndex((item) => item.id === id);

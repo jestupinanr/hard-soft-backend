@@ -50,7 +50,8 @@ export class SoftwareService {
     return this.softwareRepository.findOne({
       where: {
         id
-      }
+      },
+      relations: ['status', 'type', 'brand']
     });
   }
 

@@ -1,5 +1,5 @@
 import { UsersService } from '../services/users.service';
-import { CreateUserDto } from '../dtos/user.dto';
+import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 export declare class UsersController {
     private usersService;
     constructor(usersService: UsersService);
@@ -17,4 +17,5 @@ export declare class UsersController {
         address: string;
         bornDate: string;
     } & import("../entities/user.entity").User>;
+    update(id: string, payload: UpdateUserDto): Promise<import("../entities/user.entity").User>;
 }

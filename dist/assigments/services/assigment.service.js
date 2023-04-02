@@ -74,6 +74,22 @@ let AssigmentService = class AssigmentService {
             throw new common_1.BadRequestException(error.detail);
         }
     }
+    async update(id, changes) {
+        const software = this.assigmentRepository.findOne({
+            where: {
+                id
+            }
+        });
+        if (!software)
+            throw new common_1.NotFoundException(`Assigment #${id} not found`);
+        await this.assigmentRepository.update(id, Object.assign({}, changes));
+        return this.assigmentRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['user', 'user.role', 'resource', 'resource.hardware', 'resource.software']
+        });
+    }
 };
 AssigmentService = __decorate([
     common_1.Injectable(),

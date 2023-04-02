@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { CreateAssigmentDto } from '../dtos/assigment';
+import { CreateAssigmentDto, UpdateAssigmentDto } from '../dtos/assigment';
 import { Assigment } from '../entities/assigment.entity';
 export declare class AssigmentService {
     private assigmentRepository;
@@ -9,4 +9,5 @@ export declare class AssigmentService {
     findAllByUser(id: string): Promise<Assigment[]>;
     findAllByResource(id: string): Promise<Assigment>;
     create(data: CreateAssigmentDto): Promise<CreateAssigmentDto & Assigment>;
+    update(id: string, changes: UpdateAssigmentDto): Promise<Assigment>;
 }

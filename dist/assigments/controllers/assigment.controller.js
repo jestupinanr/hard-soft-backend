@@ -36,6 +36,9 @@ let AssigmentController = class AssigmentController {
     create(payload) {
         return this.assigmentService.create(payload);
     }
+    update(id, payload) {
+        return this.assigmentService.update(id, payload);
+    }
 };
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
@@ -76,6 +79,15 @@ __decorate([
     __metadata("design:paramtypes", [assigment_1.CreateAssigmentDto]),
     __metadata("design:returntype", void 0)
 ], AssigmentController.prototype, "create", null);
+__decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
+    common_1.Put(':id'),
+    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assigment_1.UpdateAssigmentDto]),
+    __metadata("design:returntype", void 0)
+], AssigmentController.prototype, "update", null);
 AssigmentController = __decorate([
     common_1.Controller('assigment'),
     __metadata("design:paramtypes", [assigment_service_1.AssigmentService])

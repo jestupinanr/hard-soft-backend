@@ -1,4 +1,4 @@
-import { CreateIncidentResourceDto } from '../dtos/incidents';
+import { CreateIncidentResourceDto, UpdateIncidentDto } from '../dtos/incidents';
 import { IncidentsService } from '../services/incidents.service';
 export declare class IncidentsController {
     private incidentService;
@@ -6,4 +6,5 @@ export declare class IncidentsController {
     findAll(): Promise<import("../entities/incidents.entity").Incidents[]>;
     get(id: string): Promise<import("../entities/incidents.entity").Incidents>;
     create(payload: CreateIncidentResourceDto): Promise<CreateIncidentResourceDto & import("../entities/incidents.entity").Incidents>;
+    update(id: string, payload: UpdateIncidentDto): Promise<import("../entities/incidents.entity").Incidents>;
 }

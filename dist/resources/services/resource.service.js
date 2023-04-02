@@ -31,7 +31,7 @@ let ResourceService = class ResourceService {
             where: {
                 id
             },
-            relations: ['hardware', 'hardware.status', 'software', 'software.status']
+            relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type']
         });
         if (!resource)
             throw new common_1.NotFoundException(`Resource #${id} not found`);

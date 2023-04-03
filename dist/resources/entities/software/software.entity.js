@@ -18,38 +18,38 @@ const type_entity_1 = require("../type.entity");
 let Software = class Software extends base_entity_1.baseEntity {
 };
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 200, nullable: false }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 200, nullable: false }),
     __metadata("design:type", String)
 ], Software.prototype, "name", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => status_resources_entity_1.StatusResources),
-    typeorm_1.JoinColumn(),
+    (0, typeorm_1.ManyToOne)(() => status_resources_entity_1.StatusResources),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", status_resources_entity_1.StatusResources)
 ], Software.prototype, "status", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => brand_entity_1.ResourceBrand),
-    typeorm_1.JoinColumn(),
+    (0, typeorm_1.ManyToOne)(() => brand_entity_1.ResourceBrand),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", brand_entity_1.ResourceBrand)
 ], Software.prototype, "brand", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => type_entity_1.ResourceType),
-    typeorm_1.JoinColumn(),
+    (0, typeorm_1.ManyToOne)(() => type_entity_1.ResourceType),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", type_entity_1.ResourceType)
 ], Software.prototype, "type", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 100, nullable: false }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 100, nullable: false }),
     __metadata("design:type", String)
 ], Software.prototype, "licenseNumber", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 300, nullable: false }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 300, nullable: false }),
     __metadata("design:type", String)
 ], Software.prototype, "observations", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'timestamp', nullable: false, name: 'acquisition_date' }),
+    (0, typeorm_1.Column)({ type: 'timestamp', nullable: false, name: 'acquisition_date' }),
     __metadata("design:type", Date)
 ], Software.prototype, "acquisitionDate", void 0);
 Software = __decorate([
-    typeorm_1.Entity('software')
+    (0, typeorm_1.Entity)('software')
 ], Software);
 exports.Software = Software;
 //# sourceMappingURL=software.entity.js.map

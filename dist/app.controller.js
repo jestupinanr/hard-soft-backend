@@ -27,25 +27,25 @@ let AppController = class AppController {
     }
 };
 __decorate([
-    common_1.Get(),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getHello", null);
 __decorate([
-    common_1.Get('nuevo'),
+    (0, common_1.Get)('nuevo'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "newEndpoint", null);
 __decorate([
-    common_1.Get('/ruta/'),
+    (0, common_1.Get)('/ruta/'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "hello", null);
 AppController = __decorate([
-    common_1.Controller(),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
 ], AppController);
 exports.AppController = AppController;

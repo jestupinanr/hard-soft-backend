@@ -15,7 +15,7 @@ const roles_controller_1 = require("./controller/roles.controller");
 let RolesModule = class RolesModule {
 };
 RolesModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([role_entity_1.Roles])],
         providers: [roles_service_1.RolesService],
         controllers: [roles_controller_1.RolesController]

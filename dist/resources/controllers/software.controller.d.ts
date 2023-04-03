@@ -1,3 +1,4 @@
+import { StreamableFile } from '@nestjs/common';
 import { CreateSoftwareDto, UpdateSoftwareDto } from '../dtos/software';
 import { SoftwareService } from '../services/software.service';
 export declare class SoftwareController {
@@ -9,4 +10,8 @@ export declare class SoftwareController {
     } & import("../entities/resources.entity").Resources>;
     update(id: string, payload: UpdateSoftwareDto): Promise<import("../entities/software/software.entity").Software>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
+    getUsersExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<StreamableFile>;
 }

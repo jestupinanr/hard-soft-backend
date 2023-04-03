@@ -1,3 +1,4 @@
+import { StreamableFile } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 export declare class UsersController {
@@ -18,4 +19,8 @@ export declare class UsersController {
         bornDate: string;
     } & import("../entities/user.entity").User>;
     update(id: string, payload: UpdateUserDto): Promise<import("../entities/user.entity").User>;
+    getUsersExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<StreamableFile>;
 }

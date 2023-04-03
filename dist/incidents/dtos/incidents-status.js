@@ -15,13 +15,13 @@ const mapped_types_1 = require("@nestjs/mapped-types");
 class CreateIncidentStatusResourceDto {
 }
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateIncidentStatusResourceDto.prototype, "name", void 0);
 exports.CreateIncidentStatusResourceDto = CreateIncidentStatusResourceDto;
-class UpdateIncidentStatusDto extends mapped_types_1.PartialType(CreateIncidentStatusResourceDto) {
+class UpdateIncidentStatusDto extends (0, mapped_types_1.PartialType)(CreateIncidentStatusResourceDto) {
 }
 exports.UpdateIncidentStatusDto = UpdateIncidentStatusDto;
 //# sourceMappingURL=incidents-status.js.map

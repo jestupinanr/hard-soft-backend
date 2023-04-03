@@ -12,4 +12,8 @@ export declare class SoftwareService {
     } & import("../entities/resources.entity").Resources>;
     update(id: string, changes: UpdateSoftwareDto): Promise<Software>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
+    createReportExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<string>;
 }

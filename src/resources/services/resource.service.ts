@@ -14,7 +14,7 @@ export class ResourceService {
 
   findAll():Promise<Resources[]> {
     return this.ResourceRepository.find({
-      relations: ['hardware', 'hardware.status', 'software', 'software.status']
+      relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type']
     });
   }
 
@@ -41,5 +41,5 @@ export class ResourceService {
       return await this.ResourceRepository.save({
         software: software
       });
-  }
+  };
 }

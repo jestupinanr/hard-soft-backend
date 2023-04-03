@@ -37,8 +37,8 @@ let ResourceTypesService = class ResourceTypesService {
     }
 };
 ResourceTypesService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(type_entity_1.ResourceType)),
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(type_entity_1.ResourceType)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], ResourceTypesService);
 exports.ResourceTypesService = ResourceTypesService;

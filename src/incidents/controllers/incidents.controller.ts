@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put, Query, StreamableFile, UseGuards } from '@nestjs/common';
+import { createReadStream } from 'fs';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateIncidentResourceDto, UpdateIncidentDto } from '../dtos/incidents';
 import { IncidentsService } from '../services/incidents.service';
@@ -31,5 +32,12 @@ export class IncidentsController {
     @Body() payload: UpdateIncidentDto,
   ) {
     return this.incidentService.update(id, payload);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('report/incident')
+  async getUsersExcel(@Query() query: {dateStart: string, dateEnd: string}) {
+    const path = await this.incidentService.createReportExcel(query);
+    return new StreamableFile(createReadStream(path));
   }
 }

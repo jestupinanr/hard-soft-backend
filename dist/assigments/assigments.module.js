@@ -15,7 +15,7 @@ const assigment_service_1 = require("./services/assigment.service");
 let AssigmentsModule = class AssigmentsModule {
 };
 AssigmentsModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([assigment_entity_1.Assigment])],
         providers: [assigment_service_1.AssigmentService],
         controllers: [assigment_controller_1.AssigmentController],

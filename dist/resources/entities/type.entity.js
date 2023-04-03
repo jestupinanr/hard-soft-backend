@@ -15,15 +15,15 @@ const typeorm_1 = require("typeorm");
 let ResourceType = class ResourceType extends base_entity_1.baseEntity {
 };
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 50, nullable: false }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 50, nullable: false }),
     __metadata("design:type", String)
 ], ResourceType.prototype, "name", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 50, nullable: false }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 50, nullable: false }),
     __metadata("design:type", String)
 ], ResourceType.prototype, "resource", void 0);
 ResourceType = __decorate([
-    typeorm_1.Entity('resource_type')
+    (0, typeorm_1.Entity)('resource_type')
 ], ResourceType);
 exports.ResourceType = ResourceType;
 //# sourceMappingURL=type.entity.js.map

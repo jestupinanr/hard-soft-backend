@@ -29,23 +29,23 @@ let ResourceTypeController = class ResourceTypeController {
     }
 };
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Get(),
-    __param(0, common_1.Query()),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ResourceTypeController.prototype, "findAll", null);
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Post(),
-    __param(0, common_1.Body()),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [resource_brand_1.CreateResourceBrandDto]),
     __metadata("design:returntype", void 0)
 ], ResourceTypeController.prototype, "create", null);
 ResourceTypeController = __decorate([
-    common_1.Controller('resources/type'),
+    (0, common_1.Controller)('resources/type'),
     __metadata("design:paramtypes", [types_service_1.ResourceTypesService])
 ], ResourceTypeController);
 exports.ResourceTypeController = ResourceTypeController;

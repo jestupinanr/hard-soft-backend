@@ -18,7 +18,7 @@ const incidents_service_1 = require("./services/incidents.service");
 let IncidentsModule = class IncidentsModule {
 };
 IncidentsModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([incidentsStatus_entity_1.IncidentsStatus, incidents_entity_1.Incidents])],
         providers: [incidents_status_service_1.IncidentStatusService, incidents_service_1.IncidentsService],
         controllers: [incidents_status_controller_1.IncidentsStatusController, incidents_controller_1.IncidentsController],

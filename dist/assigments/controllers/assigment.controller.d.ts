@@ -1,3 +1,4 @@
+import { StreamableFile } from '@nestjs/common';
 import { CreateAssigmentDto, UpdateAssigmentDto } from '../dtos/assigment';
 import { AssigmentService } from '../services/assigment.service';
 export declare class AssigmentController {
@@ -9,4 +10,8 @@ export declare class AssigmentController {
     getByResource(id: string): Promise<import("../entities/assigment.entity").Assigment>;
     create(payload: CreateAssigmentDto): Promise<CreateAssigmentDto & import("../entities/assigment.entity").Assigment>;
     update(id: string, payload: UpdateAssigmentDto): Promise<import("../entities/assigment.entity").Assigment>;
+    getUsersExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<StreamableFile>;
 }

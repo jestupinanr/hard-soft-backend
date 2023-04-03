@@ -18,7 +18,7 @@ let ParseIntPipe = class ParseIntPipe {
     }
 };
 ParseIntPipe = __decorate([
-    common_1.Injectable()
+    (0, common_1.Injectable)()
 ], ParseIntPipe);
 exports.ParseIntPipe = ParseIntPipe;
 //# sourceMappingURL=parse-int.pipe.js.map

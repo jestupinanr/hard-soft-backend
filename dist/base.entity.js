@@ -14,15 +14,15 @@ const typeorm_1 = require("typeorm");
 class baseEntity {
 }
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn('uuid'),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
 ], baseEntity.prototype, "id", void 0);
 __decorate([
-    typeorm_1.CreateDateColumn({ nullable: true }),
+    (0, typeorm_1.CreateDateColumn)({ nullable: true }),
     __metadata("design:type", Date)
 ], baseEntity.prototype, "create_at", void 0);
 __decorate([
-    typeorm_1.CreateDateColumn({ nullable: true }),
+    (0, typeorm_1.CreateDateColumn)({ nullable: true }),
     __metadata("design:type", Date)
 ], baseEntity.prototype, "update_at", void 0);
 exports.baseEntity = baseEntity;

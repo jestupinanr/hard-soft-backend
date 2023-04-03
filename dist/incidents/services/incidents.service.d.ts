@@ -8,4 +8,8 @@ export declare class IncidentsService {
     findOne(id: string): Promise<Incidents>;
     create(data: CreateIncidentResourceDto): Promise<CreateIncidentResourceDto & Incidents>;
     update(id: string, changes: UpdateIncidentDto): Promise<Incidents>;
+    createReportExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<string>;
 }

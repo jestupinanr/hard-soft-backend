@@ -17,21 +17,21 @@ const software_entity_1 = require("./software/software.entity");
 let Resources = class Resources extends base_entity_1.baseEntity {
 };
 __decorate([
-    typeorm_1.ManyToOne(() => hardware_entity_1.Hardware, { nullable: true }),
-    typeorm_1.JoinColumn(),
+    (0, typeorm_1.ManyToOne)(() => hardware_entity_1.Hardware, { nullable: true }),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", hardware_entity_1.Hardware)
 ], Resources.prototype, "hardware", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => software_entity_1.Software, { nullable: true }),
-    typeorm_1.JoinColumn(),
+    (0, typeorm_1.ManyToOne)(() => software_entity_1.Software, { nullable: true }),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", software_entity_1.Software)
 ], Resources.prototype, "software", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'int', default: 0, name: 'is_assigned' }),
+    (0, typeorm_1.Column)({ type: 'int', default: 0, name: 'is_assigned' }),
     __metadata("design:type", String)
 ], Resources.prototype, "isAssigned", void 0);
 Resources = __decorate([
-    typeorm_1.Entity('resources')
+    (0, typeorm_1.Entity)('resources')
 ], Resources);
 exports.Resources = Resources;
 //# sourceMappingURL=resources.entity.js.map

@@ -29,22 +29,22 @@ let RolesController = class RolesController {
     }
 };
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Get(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], RolesController.prototype, "findAll", null);
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Post(),
-    __param(0, common_1.Body()),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [roles_dto_1.CreateRolDto]),
     __metadata("design:returntype", Promise)
 ], RolesController.prototype, "create", null);
 RolesController = __decorate([
-    common_1.Controller('roles'),
+    (0, common_1.Controller)('roles'),
     __metadata("design:paramtypes", [roles_service_1.RolesService])
 ], RolesController);
 exports.RolesController = RolesController;

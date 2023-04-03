@@ -23,7 +23,7 @@ let ResourceService = class ResourceService {
     }
     findAll() {
         return this.ResourceRepository.find({
-            relations: ['hardware', 'hardware.status', 'software', 'software.status']
+            relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type']
         });
     }
     async findOne(id) {
@@ -47,10 +47,11 @@ let ResourceService = class ResourceService {
                 software: software
             });
     }
+    ;
 };
 ResourceService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(resources_entity_1.Resources)),
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(resources_entity_1.Resources)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], ResourceService);
 exports.ResourceService = ResourceService;

@@ -19,4 +19,8 @@ export declare class UsersService {
         bornDate: string;
     } & User>;
     update(id: string, changes: UpdateUserDto): Promise<User>;
+    createReportExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<string>;
 }

@@ -17,23 +17,23 @@ const resources_entity_1 = require("../../resources/entities/resources.entity");
 class CreateAssigmentDto {
 }
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", user_entity_1.User)
 ], CreateAssigmentDto.prototype, "user", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", resources_entity_1.Resources)
 ], CreateAssigmentDto.prototype, "resource", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 300),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 300),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateAssigmentDto.prototype, "description", void 0);
 exports.CreateAssigmentDto = CreateAssigmentDto;
-class UpdateAssigmentDto extends mapped_types_1.PartialType(CreateAssigmentDto) {
+class UpdateAssigmentDto extends (0, mapped_types_1.PartialType)(CreateAssigmentDto) {
 }
 exports.UpdateAssigmentDto = UpdateAssigmentDto;
 //# sourceMappingURL=assigment.js.map

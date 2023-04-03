@@ -34,8 +34,8 @@ let IncidentStatusService = class IncidentStatusService {
     }
 };
 IncidentStatusService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(incidentsStatus_entity_1.IncidentsStatus)),
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(incidentsStatus_entity_1.IncidentsStatus)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], IncidentStatusService);
 exports.IncidentStatusService = IncidentStatusService;

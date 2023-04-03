@@ -15,19 +15,19 @@ const mapped_types_1 = require("@nestjs/mapped-types");
 class CreateResourceBrandDto {
 }
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateResourceBrandDto.prototype, "name", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateResourceBrandDto.prototype, "resource", void 0);
 exports.CreateResourceBrandDto = CreateResourceBrandDto;
-class UpdateResorceBrandDto extends mapped_types_1.PartialType(CreateResourceBrandDto) {
+class UpdateResorceBrandDto extends (0, mapped_types_1.PartialType)(CreateResourceBrandDto) {
 }
 exports.UpdateResorceBrandDto = UpdateResorceBrandDto;
 //# sourceMappingURL=resource-brand.js.map

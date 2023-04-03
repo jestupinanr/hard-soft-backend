@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, Query, StreamableFile, UseGuards } from '@nestjs/common';
+import { createReadStream } from 'fs';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateSoftwareDto, UpdateSoftwareDto } from '../dtos/software';
 import { SoftwareService } from '../services/software.service';
@@ -32,5 +33,12 @@ export class SoftwareController {
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.softwareService.remove(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('report/software')
+  async getUsersExcel(@Query() query: {dateStart: string, dateEnd: string}) {
+    const path = await this.softwareService.createReportExcel(query);
+    return new StreamableFile(createReadStream(path));
   }
 }

@@ -18,50 +18,50 @@ const type_entity_1 = require("../entities/type.entity");
 class CreateSoftwareDto {
 }
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 200),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 200),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateSoftwareDto.prototype, "name", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", status_resources_entity_1.StatusResources)
 ], CreateSoftwareDto.prototype, "status", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.Length(1, 100),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.Length)(1, 100),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", brand_entity_1.ResourceBrand)
 ], CreateSoftwareDto.prototype, "brand", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 100),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 100),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateSoftwareDto.prototype, "licenseNumber", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", type_entity_1.ResourceType)
 ], CreateSoftwareDto.prototype, "type", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 300),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 300),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateSoftwareDto.prototype, "observations", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 300),
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsDateString(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 300),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateSoftwareDto.prototype, "acquisitionDate", void 0);
 exports.CreateSoftwareDto = CreateSoftwareDto;
-class UpdateSoftwareDto extends mapped_types_1.PartialType(CreateSoftwareDto) {
+class UpdateSoftwareDto extends (0, mapped_types_1.PartialType)(CreateSoftwareDto) {
 }
 exports.UpdateSoftwareDto = UpdateSoftwareDto;
 //# sourceMappingURL=software.js.map

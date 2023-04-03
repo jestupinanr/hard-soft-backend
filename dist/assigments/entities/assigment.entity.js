@@ -17,21 +17,21 @@ const typeorm_1 = require("typeorm");
 let Assigment = class Assigment extends base_entity_1.baseEntity {
 };
 __decorate([
-    typeorm_1.ManyToOne(() => user_entity_1.User),
-    typeorm_1.JoinColumn(),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", user_entity_1.User)
 ], Assigment.prototype, "user", void 0);
 __decorate([
-    typeorm_1.OneToOne(() => resources_entity_1.Resources),
-    typeorm_1.JoinColumn(),
+    (0, typeorm_1.OneToOne)(() => resources_entity_1.Resources),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", resources_entity_1.Resources)
 ], Assigment.prototype, "resource", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 300, nullable: false }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 300, nullable: false }),
     __metadata("design:type", String)
 ], Assigment.prototype, "description", void 0);
 Assigment = __decorate([
-    typeorm_1.Entity('assigments')
+    (0, typeorm_1.Entity)('assigments')
 ], Assigment);
 exports.Assigment = Assigment;
 //# sourceMappingURL=assigment.entity.js.map

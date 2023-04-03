@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, Query, StreamableFile, UseGuards } from '@nestjs/common';
+import { createReadStream } from 'fs';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateHardwareDto, UpdateHardwareDto } from '../../dtos/hardware';
 import { HardwareService } from '../../services/hardware/hardware.service';
@@ -32,5 +33,12 @@ export class HardwareController {
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.hardwareService.remove(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('report/hardware')
+  async getUsersExcel(@Query() query: {dateStart: string, dateEnd: string}) {
+    const path = await this.hardwareService.createReportExcel(query);
+    return new StreamableFile(createReadStream(path));
   }
 }

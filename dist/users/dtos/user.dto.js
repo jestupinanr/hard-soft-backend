@@ -16,58 +16,58 @@ const role_entity_1 = require("../../roles/entities/role.entity");
 class CreateUserDto {
 }
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 25),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 25),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "nit", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "name", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "lastName", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsEmail(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.Length(6),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Length)(6),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 __decorate([
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", role_entity_1.Roles)
 ], CreateUserDto.prototype, "role", void 0);
 __decorate([
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsString(),
-    class_validator_1.Length(0, 30),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(0, 30),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "phone1", void 0);
 __decorate([
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsString(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "address", void 0);
 __decorate([
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsString(),
-    class_validator_1.IsDateString(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "bornDate", void 0);
 exports.CreateUserDto = CreateUserDto;
-class UpdateUserDto extends mapped_types_1.PartialType(CreateUserDto) {
+class UpdateUserDto extends (0, mapped_types_1.PartialType)(CreateUserDto) {
 }
 exports.UpdateUserDto = UpdateUserDto;
 //# sourceMappingURL=user.dto.js.map

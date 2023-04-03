@@ -15,12 +15,12 @@ const mapped_types_1 = require("@nestjs/mapped-types");
 class CreateRolDto {
 }
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateRolDto.prototype, "name", void 0);
 exports.CreateRolDto = CreateRolDto;
-class UpdateRolDto extends mapped_types_1.PartialType(CreateRolDto) {
+class UpdateRolDto extends (0, mapped_types_1.PartialType)(CreateRolDto) {
 }
 exports.UpdateRolDto = UpdateRolDto;
 //# sourceMappingURL=roles.dto.js.map

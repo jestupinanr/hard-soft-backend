@@ -1,3 +1,4 @@
+import { StreamableFile } from '@nestjs/common';
 import { CreateHardwareDto, UpdateHardwareDto } from '../../dtos/hardware';
 import { HardwareService } from '../../services/hardware/hardware.service';
 export declare class HardwareController {
@@ -9,4 +10,8 @@ export declare class HardwareController {
     } & import("../../entities/resources.entity").Resources>;
     update(id: string, payload: UpdateHardwareDto): Promise<import("../../entities/hardware/hardware.entity").Hardware>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
+    getUsersExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<StreamableFile>;
 }

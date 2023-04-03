@@ -10,4 +10,8 @@ export declare class AssigmentService {
     findAllByResource(id: string): Promise<Assigment>;
     create(data: CreateAssigmentDto): Promise<CreateAssigmentDto & Assigment>;
     update(id: string, changes: UpdateAssigmentDto): Promise<Assigment>;
+    createReportExcel(query: {
+        dateStart: string;
+        dateEnd: string;
+    }): Promise<string>;
 }

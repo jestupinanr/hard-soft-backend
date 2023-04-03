@@ -18,50 +18,50 @@ const brand_entity_1 = require("../entities/brand.entity");
 class CreateHardwareDto {
 }
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 200),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 200),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateHardwareDto.prototype, "name", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", status_resources_entity_1.StatusResources)
 ], CreateHardwareDto.prototype, "status", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.Length(1, 100),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.Length)(1, 100),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", brand_entity_1.ResourceBrand)
 ], CreateHardwareDto.prototype, "brand", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 100),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 100),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateHardwareDto.prototype, "model", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.Length(1, 50),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.Length)(1, 50),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", type_entity_1.ResourceType)
 ], CreateHardwareDto.prototype, "type", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 300),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 300),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateHardwareDto.prototype, "observations", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 300),
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsDateString(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 300),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateHardwareDto.prototype, "acquisitionDate", void 0);
 exports.CreateHardwareDto = CreateHardwareDto;
-class UpdateHardwareDto extends mapped_types_1.PartialType(CreateHardwareDto) {
+class UpdateHardwareDto extends (0, mapped_types_1.PartialType)(CreateHardwareDto) {
 }
 exports.UpdateHardwareDto = UpdateHardwareDto;
 //# sourceMappingURL=hardware.js.map

@@ -15,11 +15,11 @@ const typeorm_1 = require("typeorm");
 let IncidentsStatus = class IncidentsStatus extends base_entity_1.baseEntity {
 };
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 50, nullable: false }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 50, nullable: false }),
     __metadata("design:type", String)
 ], IncidentsStatus.prototype, "name", void 0);
 IncidentsStatus = __decorate([
-    typeorm_1.Entity('incidents_status')
+    (0, typeorm_1.Entity)('incidents_status')
 ], IncidentsStatus);
 exports.IncidentsStatus = IncidentsStatus;
 //# sourceMappingURL=incidentsStatus.entity.js.map

@@ -15,11 +15,11 @@ const typeorm_1 = require("typeorm");
 let Roles = class Roles extends base_entity_1.baseEntity {
 };
 __decorate([
-    typeorm_1.Column({ type: 'varchar', length: 50, nullable: false, unique: true }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 50, nullable: false, unique: true }),
     __metadata("design:type", String)
 ], Roles.prototype, "name", void 0);
 Roles = __decorate([
-    typeorm_1.Entity('roles')
+    (0, typeorm_1.Entity)('roles')
 ], Roles);
 exports.Roles = Roles;
 //# sourceMappingURL=role.entity.js.map

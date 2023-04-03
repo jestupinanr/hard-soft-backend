@@ -17,33 +17,33 @@ const assigment_entity_1 = require("../../assigments/entities/assigment.entity")
 class CreateIncidentResourceDto {
 }
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 200),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 200),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateIncidentResourceDto.prototype, "title", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", assigment_entity_1.Assigment)
 ], CreateIncidentResourceDto.prototype, "assigment", void 0);
 __decorate([
-    class_validator_1.IsUUID(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", incidentsStatus_entity_1.IncidentsStatus)
 ], CreateIncidentResourceDto.prototype, "incidentStatus", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 300),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 300),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateIncidentResourceDto.prototype, "description", void 0);
 __decorate([
-    class_validator_1.IsOptional(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateIncidentResourceDto.prototype, "solution", void 0);
 exports.CreateIncidentResourceDto = CreateIncidentResourceDto;
-class UpdateIncidentDto extends mapped_types_1.PartialType(CreateIncidentResourceDto) {
+class UpdateIncidentDto extends (0, mapped_types_1.PartialType)(CreateIncidentResourceDto) {
 }
 exports.UpdateIncidentDto = UpdateIncidentDto;
 //# sourceMappingURL=incidents.js.map

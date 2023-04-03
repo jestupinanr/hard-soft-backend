@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put, Query, StreamableFile, UseGuards } from '@nestjs/common';
+import { createReadStream } from 'fs';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateAssigmentDto, UpdateAssigmentDto } from '../dtos/assigment';
 import { AssigmentService } from '../services/assigment.service';
@@ -44,5 +45,12 @@ export class AssigmentController {
     @Body() payload: UpdateAssigmentDto,
   ) {
     return this.assigmentService.update(id, payload);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('report/assigment')
+  async getUsersExcel(@Query() query: {dateStart: string, dateEnd: string}) {
+    const path = await this.assigmentService.createReportExcel(query);
+    return new StreamableFile(createReadStream(path));
   }
 }

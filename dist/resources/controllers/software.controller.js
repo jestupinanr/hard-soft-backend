@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SoftwareController = void 0;
 const common_1 = require("@nestjs/common");
+const fs_1 = require("fs");
 const jwt_auth_guard_1 = require("../../auth/jwt-auth.guard");
 const software_1 = require("../dtos/software");
 const software_service_1 = require("../services/software.service");
@@ -33,41 +34,53 @@ let SoftwareController = class SoftwareController {
     remove(id) {
         return this.softwareService.remove(id);
     }
+    async getUsersExcel(query) {
+        const path = await this.softwareService.createReportExcel(query);
+        return new common_1.StreamableFile((0, fs_1.createReadStream)(path));
+    }
 };
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Get(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "findAll", null);
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Post(),
-    __param(0, common_1.Body()),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [software_1.CreateSoftwareDto]),
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "create", null);
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Put(':id'),
-    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
-    __param(1, common_1.Body()),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, software_1.UpdateSoftwareDto]),
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "update", null);
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Delete(':id'),
-    __param(0, common_1.Param('id', common_1.ParseUUIDPipe)),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], SoftwareController.prototype, "remove", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)('report/software'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], SoftwareController.prototype, "getUsersExcel", null);
 SoftwareController = __decorate([
-    common_1.Controller('resources/software'),
+    (0, common_1.Controller)('resources/software'),
     __metadata("design:paramtypes", [software_service_1.SoftwareService])
 ], SoftwareController);
 exports.SoftwareController = SoftwareController;

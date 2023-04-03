@@ -37,8 +37,8 @@ let HardwareBrandService = class HardwareBrandService {
     }
 };
 HardwareBrandService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(brand_entity_1.ResourceBrand)),
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(brand_entity_1.ResourceBrand)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], HardwareBrandService);
 exports.HardwareBrandService = HardwareBrandService;

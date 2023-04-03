@@ -34,8 +34,8 @@ let RolesService = class RolesService {
     }
 };
 RolesService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(role_entity_1.Roles)),
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(role_entity_1.Roles)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], RolesService);
 exports.RolesService = RolesService;

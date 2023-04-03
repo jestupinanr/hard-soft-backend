@@ -32,7 +32,7 @@ const type_entity_1 = require("./resources/entities/type.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             typeorm_1.TypeOrmModule.forRootAsync({

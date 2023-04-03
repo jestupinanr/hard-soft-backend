@@ -29,22 +29,22 @@ let StatusResourcesController = class StatusResourcesController {
     }
 };
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Get(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], StatusResourcesController.prototype, "findAll", null);
 __decorate([
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Post(),
-    __param(0, common_1.Body()),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [status_resources_1.CreateStatusResourceDto]),
     __metadata("design:returntype", void 0)
 ], StatusResourcesController.prototype, "create", null);
 StatusResourcesController = __decorate([
-    common_1.Controller('resources/status'),
+    (0, common_1.Controller)('resources/status'),
     __metadata("design:paramtypes", [status_resources_service_1.StatusResourcesService])
 ], StatusResourcesController);
 exports.StatusResourcesController = StatusResourcesController;

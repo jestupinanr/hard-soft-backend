@@ -23,4 +23,6 @@ export class Software extends baseEntity {
   observations: string;
   @Column({ type: 'timestamp', nullable: false, name: 'acquisition_date' })
   acquisitionDate: Date
+  @Column({ type: 'timestamp', nullable: false, name: 'renovation_date' })
+  renovationDate: Date
 }

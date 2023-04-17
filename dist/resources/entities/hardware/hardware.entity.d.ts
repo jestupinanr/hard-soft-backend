@@ -10,4 +10,5 @@ export declare class Hardware extends baseEntity {
     model: string;
     observations: string;
     acquisitionDate: Date;
+    renovationDate: Date;
 }

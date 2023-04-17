@@ -19,7 +19,7 @@ const typeorm_2 = require("typeorm");
 const bcrypt = require("bcrypt");
 const user_entity_1 = require("../entities/user.entity");
 const path_1 = require("path");
-const moment_1 = require("moment");
+const moment = require("moment");
 const fs = require("fs-extra");
 const xl = require('excel4node');
 const process = require("process");
@@ -27,10 +27,23 @@ let UsersService = class UsersService {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
     }
-    findAll() {
-        return this.usersRepository.find({
-            relations: ['role']
-        });
+    findAll(query) {
+        if (query.hasOwnProperty('filter')) {
+            const { filter } = query;
+            return this.usersRepository.find({
+                relations: ['role'],
+                where: [{
+                        name: (0, typeorm_2.Like)(`%${filter}%`),
+                    }, {
+                        lastName: (0, typeorm_2.Like)(`%${filter}%`)
+                    }]
+            });
+        }
+        else {
+            return this.usersRepository.find({
+                relations: ['role']
+            });
+        }
     }
     findOne(id) {
         const user = this.usersRepository.findOne({
@@ -127,9 +140,9 @@ let UsersService = class UsersService {
             sheet.cell(row, 4).string(user.email);
             sheet.cell(row, 5).string(user.phone1);
             sheet.cell(row, 6).string(user.address);
-            sheet.cell(row, 7).string(`${(0, moment_1.default)(user.bornDate).format('YYYY-MM-DD')}`);
+            sheet.cell(row, 7).string(`${moment(user.bornDate).format('YYYY-MM-DD')}`);
             sheet.cell(row, 8).string(`${user.role.name}`);
-            sheet.cell(row, 9).string(`${(0, moment_1.default)(user.create_at).format('YYYY-MM-DD')}`);
+            sheet.cell(row, 9).string(`${moment(user.create_at).format('YYYY-MM-DD')}`);
         });
         const randomID = new Date().getTime();
         const filename = `exported_users_${randomID}.xlsx`;

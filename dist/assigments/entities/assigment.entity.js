@@ -30,6 +30,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 300, nullable: false }),
     __metadata("design:type", String)
 ], Assigment.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true, name: 'return_date' }),
+    __metadata("design:type", Date)
+], Assigment.prototype, "returnDate", void 0);
 Assigment = __decorate([
     (0, typeorm_1.Entity)('assigments')
 ], Assigment);

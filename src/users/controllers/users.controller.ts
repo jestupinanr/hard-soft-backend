@@ -24,8 +24,8 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  findAll(@Query() query: any) {
+    return this.usersService.findAll(query);
   }
 
   @Get(':id')

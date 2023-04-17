@@ -10,4 +10,5 @@ export declare class Software extends baseEntity {
     licenseNumber: string;
     observations: string;
     acquisitionDate: Date;
+    renovationDate: Date;
 }

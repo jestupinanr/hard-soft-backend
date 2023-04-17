@@ -1,12 +1,12 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Between, Repository } from 'typeorm';
+import { Between, Like, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
 import { join } from 'path';
-import moment from 'moment';
+import * as moment from 'moment';
 const fs = require("fs-extra");
 const xl = require('excel4node');
 const process = require("process");
@@ -17,10 +17,23 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User> ) {}
 
-  findAll():Promise<User[]> {
-    return this.usersRepository.find({
-      relations: ['role']
-    });
+  findAll(query: any ):Promise<User[]> {
+    if (query.hasOwnProperty('filter')) {
+      const { filter } = query;
+      
+      return this.usersRepository.find({
+        relations: ['role'],
+        where : [{
+          name : Like(`%${filter}%`),
+        }, {
+          lastName: Like(`%${filter}%`)
+        }]
+      });
+    } else {
+      return this.usersRepository.find({
+        relations: ['role']
+      });
+    }
   }
 
   findOne(id: string) {

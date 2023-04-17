@@ -15,4 +15,7 @@ export class Assigment extends baseEntity {
 
   @Column({ type: 'varchar', length: 300, nullable: false })
   description: string;
+
+  @Column({ type: 'timestamp', nullable: true, name: 'return_date' })
+  returnDate: Date;
 }

@@ -9,6 +9,7 @@ export declare class CreateHardwareDto {
     readonly type: ResourceType;
     readonly observations: string;
     readonly acquisitionDate: Date;
+    readonly renovationDate: Date;
 }
 declare const UpdateHardwareDto_base: import("@nestjs/mapped-types").MappedType<Partial<CreateHardwareDto>>;
 export declare class UpdateHardwareDto extends UpdateHardwareDto_base {

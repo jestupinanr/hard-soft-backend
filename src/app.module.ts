@@ -20,6 +20,8 @@ import { AssigmentsModule } from './assigments/assigments.module';
 import { Assigment } from './assigments/entities/assigment.entity';
 import { ResourceBrand } from './resources/entities/brand.entity';
 import { ResourceType } from './resources/entities/type.entity';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { MailModule } from './mails/mail.module';
 
 @Module({
   imports: [
@@ -38,12 +40,22 @@ import { ResourceType } from './resources/entities/type.entity';
       }),
       inject: [ConfigService],
     }),
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.gmail.com',
+        auth: {
+          user: 'empresahardsoft2023@gmail.com',
+          pass: 'Accesoparateam2023'
+        }
+      }
+    }),
     UsersModule,
     AuthModule,
     RolesModule,
     ResourcesModule,
     IncidentsModule,
-    AssigmentsModule
+    AssigmentsModule,
+    MailModule
   ],
   controllers: [AppController],
   providers: [AppService],

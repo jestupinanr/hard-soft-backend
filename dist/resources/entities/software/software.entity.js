@@ -48,6 +48,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'timestamp', nullable: false, name: 'acquisition_date' }),
     __metadata("design:type", Date)
 ], Software.prototype, "acquisitionDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'timestamp', nullable: false, name: 'renovation_date' }),
+    __metadata("design:type", Date)
+], Software.prototype, "renovationDate", void 0);
 Software = __decorate([
     (0, typeorm_1.Entity)('software')
 ], Software);

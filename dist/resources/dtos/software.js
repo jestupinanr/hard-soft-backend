@@ -55,11 +55,16 @@ __decorate([
 ], CreateSoftwareDto.prototype, "observations", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(1, 300),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateSoftwareDto.prototype, "acquisitionDate", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", Date)
+], CreateSoftwareDto.prototype, "renovationDate", void 0);
 exports.CreateSoftwareDto = CreateSoftwareDto;
 class UpdateSoftwareDto extends (0, mapped_types_1.PartialType)(CreateSoftwareDto) {
 }

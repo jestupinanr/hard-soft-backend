@@ -16,12 +16,16 @@ exports.ResourceController = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_auth_guard_1 = require("../../auth/jwt-auth.guard");
 const resource_service_1 = require("../services/resource.service");
+const resource_1 = require("../dtos/resource");
 let ResourceController = class ResourceController {
     constructor(ResourceService) {
         this.ResourceService = ResourceService;
     }
-    findAll() {
-        return this.ResourceService.findAll();
+    findAll(query) {
+        return this.ResourceService.findAll(query);
+    }
+    update(id, payload) {
+        return this.ResourceService.update(id, payload);
     }
     findOne(id) {
         return this.ResourceService.findOne(id);
@@ -30,10 +34,20 @@ let ResourceController = class ResourceController {
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ResourceController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, resource_1.CreateResourceDto]),
+    __metadata("design:returntype", void 0)
+], ResourceController.prototype, "update", null);
 __decorate([
     (0, common_1.Get)('get-one/:id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),

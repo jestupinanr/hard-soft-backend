@@ -60,6 +60,12 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateHardwareDto.prototype, "acquisitionDate", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", Date)
+], CreateHardwareDto.prototype, "renovationDate", void 0);
 exports.CreateHardwareDto = CreateHardwareDto;
 class UpdateHardwareDto extends (0, mapped_types_1.PartialType)(CreateHardwareDto) {
 }

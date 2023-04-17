@@ -22,8 +22,8 @@ let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    findAll() {
-        return this.usersService.findAll();
+    findAll(query) {
+        return this.usersService.findAll(query);
     }
     get(id) {
         return this.usersService.findOne(id);
@@ -42,8 +42,9 @@ let UsersController = class UsersController {
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([

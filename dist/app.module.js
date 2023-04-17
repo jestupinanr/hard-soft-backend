@@ -29,6 +29,8 @@ const assigments_module_1 = require("./assigments/assigments.module");
 const assigment_entity_1 = require("./assigments/entities/assigment.entity");
 const brand_entity_1 = require("./resources/entities/brand.entity");
 const type_entity_1 = require("./resources/entities/type.entity");
+const mailer_1 = require("@nestjs-modules/mailer");
+const mail_module_1 = require("./mails/mail.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -49,12 +51,22 @@ AppModule = __decorate([
                 }),
                 inject: [config_1.ConfigService],
             }),
+            mailer_1.MailerModule.forRoot({
+                transport: {
+                    host: 'smtp.gmail.com',
+                    auth: {
+                        user: 'empresahardsoft2023@gmail.com',
+                        pass: 'Accesoparateam2023'
+                    }
+                }
+            }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
             roles_module_1.RolesModule,
             resources_module_1.ResourcesModule,
             incidents_module_1.IncidentsModule,
-            assigments_module_1.AssigmentsModule
+            assigments_module_1.AssigmentsModule,
+            mail_module_1.MailModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

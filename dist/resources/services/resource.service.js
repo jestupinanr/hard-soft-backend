@@ -21,9 +21,9 @@ let ResourceService = class ResourceService {
     constructor(ResourceRepository) {
         this.ResourceRepository = ResourceRepository;
     }
-    findAll() {
+    findAll(query) {
         return this.ResourceRepository.find({
-            relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type']
+            relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type'],
         });
     }
     async findOne(id) {
@@ -36,6 +36,22 @@ let ResourceService = class ResourceService {
         if (!resource)
             throw new common_1.NotFoundException(`Resource #${id} not found`);
         return resource;
+    }
+    async update(id, changes) {
+        const software = this.ResourceRepository.findOne({
+            where: {
+                id
+            }
+        });
+        if (!software)
+            throw new common_1.NotFoundException(`Resource #${id} not found`);
+        await this.ResourceRepository.update(id, Object.assign({}, changes));
+        return this.ResourceRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type'],
+        });
     }
     async create(hardware, software) {
         if (hardware)

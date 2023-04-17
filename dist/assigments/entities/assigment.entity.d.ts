@@ -5,4 +5,5 @@ export declare class Assigment extends baseEntity {
     user: User;
     resource: Resources;
     description: string;
+    returnDate: Date;
 }

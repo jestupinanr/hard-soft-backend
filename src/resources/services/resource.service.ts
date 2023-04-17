@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Hardware } from '../entities/hardware/hardware.entity';
 import { Resources } from '../entities/resources.entity';
 import { Software } from '../entities/software/software.entity';
+import { CreateResourceDto } from '../dtos/resource';
 
 @Injectable()
 export class ResourceService {
@@ -12,9 +13,9 @@ export class ResourceService {
     private ResourceRepository: Repository<Resources>
   ) {}
 
-  findAll():Promise<Resources[]> {
+  findAll(query: string | undefined) {
     return this.ResourceRepository.find({
-      relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type']
+      relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type'],
     });
   }
 
@@ -30,6 +31,30 @@ export class ResourceService {
       throw new NotFoundException(`Resource #${id} not found`);
 
     return resource
+  }
+
+  async update(id: string, changes: CreateResourceDto) {
+    const software = this.ResourceRepository.findOne({
+      where: {
+        id
+      }
+    });
+
+    if (!software)
+      throw new NotFoundException(`Resource #${id} not found`);
+    
+    // Update
+    await this.ResourceRepository.update(id,
+      {
+        ...changes
+      });
+
+    return this.ResourceRepository.findOne({
+      where: {
+        id
+      },
+      relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type'],
+    });
   }
 
   async create(hardware?: Hardware, software?:Software) {

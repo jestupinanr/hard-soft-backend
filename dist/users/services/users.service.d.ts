@@ -4,7 +4,7 @@ import { User } from '../entities/user.entity';
 export declare class UsersService {
     private usersRepository;
     constructor(usersRepository: Repository<User>);
-    findAll(): Promise<User[]>;
+    findAll(query: any): Promise<User[]>;
     findOne(id: string): Promise<User>;
     create(data: CreateUserDto): Promise<{
         password: string;

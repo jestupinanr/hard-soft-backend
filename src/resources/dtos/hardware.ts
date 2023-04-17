@@ -42,6 +42,11 @@ export class CreateHardwareDto {
   @IsDateString()
   readonly acquisitionDate: Date
 
+  @IsString()
+  @IsNotEmpty()
+  @IsDateString()
+  readonly renovationDate: Date
+
 }
 
 export class UpdateHardwareDto extends PartialType(CreateHardwareDto) {}

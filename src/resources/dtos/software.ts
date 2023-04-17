@@ -37,10 +37,14 @@ export class CreateSoftwareDto {
   readonly observations: string;
 
   @IsString()
-  @Length(1, 300)
   @IsNotEmpty()
   @IsDateString()
   readonly acquisitionDate: Date
+
+  @IsString()
+  @IsNotEmpty()
+  @IsDateString()
+  readonly renovationDate: Date
 
 }
 

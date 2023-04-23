@@ -16,13 +16,18 @@ let MailService = class MailService {
     constructor(mailerService) {
         this.mailerService = mailerService;
     }
-    sendEmailRecoveryPassword() {
+    sendEmailRecoveryPassword(token, email) {
         this.mailerService.sendMail({
-            to: 'juan1diego3@gmail.com',
+            to: email,
             from: 'empresahardsoft2023@gmail.com',
-            subject: 'test email',
-            text: 'Este es un test de correo electronico',
-            html: '<h1>Holaaaaa este es un test de mensaje</h1>'
+            subject: 'Recuperar contraseña',
+            html: `
+        <body>
+          <h1>Recuperar contraseña</h1>
+          <p>¿has perdido tu contraseña?, no hay problema detectamos que tu cuenta si existe.</p>
+          <p>Ingresa al siguiente link para cambiar tu contraseña</p>
+          <a href='http://localhost:4200/auth/recovery-password/${token}'>Click aquí</a>
+        </body>`
         });
     }
 };

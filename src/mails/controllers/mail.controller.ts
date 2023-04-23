@@ -9,8 +9,8 @@ import { MailService } from '../services/mail.service';
 export class MailController {
   constructor( private mailService: MailService) {}
 
-  @Get()
-  findAll() {
-    return this.mailService.sendEmailRecoveryPassword();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.mailService.sendEmailRecoveryPassword();
+  // }
 }

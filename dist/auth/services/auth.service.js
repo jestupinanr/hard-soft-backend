@@ -19,19 +19,15 @@ const user_entity_1 = require("../../users/entities/user.entity");
 const typeorm_2 = require("typeorm");
 const bcrypt = require("bcrypt");
 const jwt_1 = require("@nestjs/jwt");
+const mail_service_1 = require("../../mails/services/mail.service");
 let AuthService = class AuthService {
-    constructor(usersRepository, jwtAuthService) {
+    constructor(usersRepository, jwtAuthService, mailService) {
         this.usersRepository = usersRepository;
         this.jwtAuthService = jwtAuthService;
-        this.users = [
-            {
-                email: 'correo@mail.com',
-                password: '12345',
-            },
-        ];
+        this.mailService = mailService;
     }
     findAll() {
-        return this.users;
+        return this.usersRepository.find();
     }
     async login(payload) {
         const user = await this.usersRepository.findOne({
@@ -61,12 +57,41 @@ let AuthService = class AuthService {
             throw new common_1.BadRequestException(`User or password incorrect`);
         }
     }
+    async getTokenRecoveryPassword(payload) {
+        const res = await this.usersRepository.findOne({
+            where: {
+                email: payload.email,
+            }
+        });
+        if (!res)
+            throw new common_1.BadRequestException(`User not found`);
+        const dataToken = { email: payload.email };
+        const token = this.jwtAuthService.sign(dataToken);
+        this.mailService.sendEmailRecoveryPassword(token, payload.email);
+    }
+    async savePassword(payload, token) {
+        const dataJwt = this.jwtAuthService.verify(token);
+        const res = await this.usersRepository.findOne({
+            where: {
+                email: dataJwt.email,
+            }
+        });
+        if (!res)
+            throw new common_1.BadRequestException(`User not found`);
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(payload.password, salt);
+        return await this.usersRepository.update(res.id, {
+            password: hash
+        });
+    }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(1, (0, common_1.Inject)(jwt_1.JwtService)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        jwt_1.JwtService])
+        jwt_1.JwtService,
+        mail_service_1.MailService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

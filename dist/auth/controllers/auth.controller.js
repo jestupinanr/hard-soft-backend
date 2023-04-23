@@ -26,6 +26,12 @@ let AuthController = class AuthController {
     login(payload) {
         return this.authService.login(payload);
     }
+    getTokenRecovery(payload) {
+        return this.authService.getTokenRecoveryPassword(payload);
+    }
+    savePassword(token, payload) {
+        return this.authService.savePassword(payload, token);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -40,6 +46,21 @@ __decorate([
     __metadata("design:paramtypes", [auth_dto_1.LoginDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('recovery/get-token'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [auth_dto_1.getTokenRecoveryPassword]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "getTokenRecovery", null);
+__decorate([
+    (0, common_1.Post)('recovery/:token'),
+    __param(0, (0, common_1.Param)('token')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, auth_dto_1.getTokenRecoveryPassword]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "savePassword", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

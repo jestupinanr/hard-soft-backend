@@ -22,6 +22,9 @@ import { ResourceBrand } from './resources/entities/brand.entity';
 import { ResourceType } from './resources/entities/type.entity';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailModule } from './mails/mail.module';
+import { UploadModule } from './upload/upload.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -42,12 +45,16 @@ import { MailModule } from './mails/mail.module';
     }),
     MailerModule.forRoot({
       transport: {
-        host: 'smtp.gmail.com',
+        service: 'gmail',
         auth: {
           user: 'empresahardsoft2023@gmail.com',
-          pass: 'Accesoparateam2023'
+          pass: 'gkgeegsqoljrkrkx'
         }
       }
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads', 'profile'),
+      serveRoot: '/uploads/profile',
     }),
     UsersModule,
     AuthModule,
@@ -55,7 +62,8 @@ import { MailModule } from './mails/mail.module';
     ResourcesModule,
     IncidentsModule,
     AssigmentsModule,
-    MailModule
+    MailModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

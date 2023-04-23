@@ -18,6 +18,7 @@ MailModule = __decorate([
         imports: [users_module_1.UsersModule],
         controllers: [mail_controller_1.MailController],
         providers: [mail_service_1.MailService],
+        exports: [mail_service_1.MailService]
     })
 ], MailModule);
 exports.MailModule = MailModule;

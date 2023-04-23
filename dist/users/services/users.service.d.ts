@@ -17,6 +17,7 @@ export declare class UsersService {
         phone2: string;
         address: string;
         bornDate: string;
+        picture: string;
     } & User>;
     update(id: string, changes: UpdateUserDto): Promise<User>;
     createReportExcel(query: {

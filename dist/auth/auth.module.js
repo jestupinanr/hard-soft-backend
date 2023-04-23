@@ -15,11 +15,13 @@ const users_module_1 = require("../users/users.module");
 const auth_controller_1 = require("./controllers/auth.controller");
 const jwt_strategy_1 = require("./jwt.strategy");
 const auth_service_1 = require("./services/auth.service");
+const mail_module_1 = require("../mails/mail.module");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [users_module_1.UsersModule,
+            mail_module_1.MailModule,
             typeorm_1.TypeOrmModule.forFeature([user_entity_1.User]),
             jwt_1.JwtModule.register({
                 secret: 'estaEsLaLlaveSecreta',

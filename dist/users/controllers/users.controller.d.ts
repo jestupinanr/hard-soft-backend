@@ -17,6 +17,7 @@ export declare class UsersController {
         phone2: string;
         address: string;
         bornDate: string;
+        picture: string;
     } & import("../entities/user.entity").User>;
     update(id: string, payload: UpdateUserDto): Promise<import("../entities/user.entity").User>;
     getUsersExcel(query: {

@@ -31,6 +31,9 @@ const brand_entity_1 = require("./resources/entities/brand.entity");
 const type_entity_1 = require("./resources/entities/type.entity");
 const mailer_1 = require("@nestjs-modules/mailer");
 const mail_module_1 = require("./mails/mail.module");
+const upload_module_1 = require("./upload/upload.module");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -53,12 +56,16 @@ AppModule = __decorate([
             }),
             mailer_1.MailerModule.forRoot({
                 transport: {
-                    host: 'smtp.gmail.com',
+                    service: 'gmail',
                     auth: {
                         user: 'empresahardsoft2023@gmail.com',
-                        pass: 'Accesoparateam2023'
+                        pass: 'gkgeegsqoljrkrkx'
                     }
                 }
+            }),
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'uploads', 'profile'),
+                serveRoot: '/uploads/profile',
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
@@ -66,7 +73,8 @@ AppModule = __decorate([
             resources_module_1.ResourcesModule,
             incidents_module_1.IncidentsModule,
             assigments_module_1.AssigmentsModule,
-            mail_module_1.MailModule
+            mail_module_1.MailModule,
+            upload_module_1.UploadModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

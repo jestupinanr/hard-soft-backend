@@ -7,9 +7,12 @@ import { UsersModule } from 'src/users/users.module';
 import { AuthController } from './controllers/auth.controller';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthService } from './services/auth.service';
+import { MailService } from 'src/mails/services/mail.service';
+import { MailModule } from 'src/mails/mail.module';
 
 @Module({
   imports: [UsersModule,
+    MailModule,
     TypeOrmModule.forFeature([User]),
     JwtModule.register({
       secret: 'estaEsLaLlaveSecreta',

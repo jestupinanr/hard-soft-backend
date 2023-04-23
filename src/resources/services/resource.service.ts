@@ -13,8 +13,13 @@ export class ResourceService {
     private ResourceRepository: Repository<Resources>
   ) {}
 
-  findAll(query: string | undefined) {
+  findAll(query: { active: boolean }) {
     return this.ResourceRepository.find({
+      where: {
+        ...(query.active) && {
+          isAssigned: '0'
+        }
+      },
       relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type'],
     });
   }

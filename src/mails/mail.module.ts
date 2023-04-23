@@ -8,5 +8,6 @@ import { MailService } from './services/mail.service';
   imports: [UsersModule],
   controllers: [MailController],
   providers: [MailService],
+  exports: [MailService]
 })
 export class MailModule {}

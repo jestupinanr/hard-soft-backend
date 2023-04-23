@@ -16,16 +16,7 @@ let MailController = class MailController {
     constructor(mailService) {
         this.mailService = mailService;
     }
-    findAll() {
-        return this.mailService.sendEmailRecoveryPassword();
-    }
 };
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], MailController.prototype, "findAll", null);
 MailController = __decorate([
     (0, common_1.Controller)('email'),
     __metadata("design:paramtypes", [mail_service_1.MailService])

@@ -56,6 +56,10 @@ __decorate([
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", role_entity_1.Roles)
 ], User.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', nullable: true, }),
+    __metadata("design:type", String)
+], User.prototype, "picture", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)('users')
 ], User);

@@ -6,7 +6,9 @@ import { CreateResourceDto } from '../dtos/resource';
 export declare class ResourceService {
     private ResourceRepository;
     constructor(ResourceRepository: Repository<Resources>);
-    findAll(query: string | undefined): Promise<Resources[]>;
+    findAll(query: {
+        active: boolean;
+    }): Promise<Resources[]>;
     findOne(id: string): Promise<Resources>;
     update(id: string, changes: CreateResourceDto): Promise<Resources>;
     create(hardware?: Hardware, software?: Software): Promise<{

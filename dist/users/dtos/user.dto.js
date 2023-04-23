@@ -66,6 +66,11 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "bornDate", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "picture", void 0);
 exports.CreateUserDto = CreateUserDto;
 class UpdateUserDto extends (0, mapped_types_1.PartialType)(CreateUserDto) {
 }

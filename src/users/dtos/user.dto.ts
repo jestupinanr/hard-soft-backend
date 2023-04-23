@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsEmail, Length, IsDate, IsDateString } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, Length, IsDate, IsDateString, IsOptional } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import { Roles } from 'src/roles/entities/role.entity';
 
@@ -47,6 +47,10 @@ export class CreateUserDto {
   @IsString()
   @IsDateString()
   readonly bornDate: string;
+
+  @IsString()
+  @IsOptional()
+  picture: string
 
 }
 

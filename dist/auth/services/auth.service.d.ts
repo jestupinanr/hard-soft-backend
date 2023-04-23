@@ -1,16 +1,18 @@
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
-import { authUser } from '../entities/auth.entity';
-import { LoginDto } from '../dtos/auth.dto';
+import { LoginDto, getTokenRecoveryPassword } from '../dtos/auth.dto';
 import { JwtService } from '@nestjs/jwt';
+import { MailService } from 'src/mails/services/mail.service';
 export declare class AuthService {
     private usersRepository;
-    private jwtAuthService;
-    constructor(usersRepository: Repository<User>, jwtAuthService: JwtService);
-    private users;
-    findAll(): authUser[];
+    private readonly jwtAuthService;
+    private mailService;
+    constructor(usersRepository: Repository<User>, jwtAuthService: JwtService, mailService: MailService);
+    findAll(): Promise<User[]>;
     login(payload: LoginDto): Promise<{
         user: User;
         token: string;
     }>;
+    getTokenRecoveryPassword(payload: getTokenRecoveryPassword): Promise<void>;
+    savePassword(payload: getTokenRecoveryPassword, token: string): Promise<import("typeorm").UpdateResult>;
 }

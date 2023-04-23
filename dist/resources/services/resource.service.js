@@ -23,6 +23,9 @@ let ResourceService = class ResourceService {
     }
     findAll(query) {
         return this.ResourceRepository.find({
+            where: Object.assign({}, (query.active) && {
+                isAssigned: '0'
+            }),
             relations: ['hardware', 'hardware.status', 'hardware.brand', 'hardware.type', 'software', 'software.status', 'software.brand', 'software.type'],
         });
     }

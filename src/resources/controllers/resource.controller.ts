@@ -10,7 +10,7 @@ export class ResourceController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll(@Query() query: string | undefined) {
+  findAll(@Query() query: { active: boolean }) {
     return this.ResourceService.findAll(query)
   }
 

@@ -25,4 +25,6 @@ export class User extends baseEntity {
   @ManyToOne(() => Roles)
   @JoinColumn()
   role: Roles;
+  @Column({ type: 'varchar', nullable: true, })
+  picture: string
 }

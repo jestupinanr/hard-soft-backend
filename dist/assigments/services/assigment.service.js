@@ -76,6 +76,7 @@ let AssigmentService = class AssigmentService {
             return await this.assigmentRepository.save(data);
         }
         catch (error) {
+            console.log(error);
             throw new common_1.BadRequestException(error.detail);
         }
     }

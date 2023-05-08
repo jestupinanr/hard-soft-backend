@@ -71,6 +71,8 @@ export class AssigmentService {
     try {
       return await this.assigmentRepository.save(data);
     } catch(error) {
+      console.log(error);
+      
       throw new BadRequestException(error.detail);
     }
   }
